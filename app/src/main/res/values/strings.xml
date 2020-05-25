@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Developers Breach</string>
+
+    <!--  App Toolbar Titles  -->
+    <string name="article_toolbar_title">ARTICLES</string>
+    <string name="favorites_toolbar_title">FAVORITES</string>
+    <string name="settings_toolbar_title">Settings</string>
+    <string name="web_view_toolbar_title_contact">Contact</string>
+    <string name="web_view_toolbar_title_github">GitHub</string>
+
+    <!--  Main BottomNavigationMenu Titles  -->
+    <string name="bottom_navigation_menu_title_posts">Posts</string>
+    <string name="bottom_navigation_menu_title_search">Search</string>
+    <string name="bottom_navigation_menu_title_favorite">Favorites</string>
+    <string name="bottom_navigation_menu_title_settings">Settings</string>
+    <string name="search_articles_hint">Search Articles</string>
+
+    <!--  Search Fragment  -->
+    <string name="no_search_results_found">No Results Found</string>
+
 </resources>
