@@ -1,11 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="Widget.Article.BottomNavigationView" parent="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+        <item name="itemTextColor">@color/menu_selection_highlighter</item>
+        <item name="itemIconTint">@color/menu_selection_highlighter</item>
+        <item name="labelVisibilityMode">selected</item>
+    </style>
+
+    <style name="TextAppearance.Article.Toolbar.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textAllCaps">true</item>
+        <item name="background">@android:color/transparent</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>
