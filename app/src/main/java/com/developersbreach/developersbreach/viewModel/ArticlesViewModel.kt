@@ -12,7 +12,6 @@ import kotlinx.coroutines.*
 class ArticlesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = ArticlesRepository(getDatabase(application))
-
     private var viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -31,5 +30,11 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun insertFavorite(article: Articles) {
+        viewModelScope.launch {
+            repository.insertArticle(article)
+        }
     }
 }
