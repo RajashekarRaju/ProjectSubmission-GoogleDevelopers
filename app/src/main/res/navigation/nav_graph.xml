@@ -28,7 +28,7 @@
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites">
         <action
-            android:id="@+id/ArticlesToFavoritesFragment"
+            android:id="@+id/FavoritesToDetailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
 
@@ -42,7 +42,11 @@
         android:id="@+id/detailFragment"
         android:name="com.developersbreach.developersbreach.view.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="detailFragmentArgs"
+            app:argType="com.developersbreach.developersbreach.model.Articles" />
+    </fragment>
 
     <fragment
         android:id="@+id/webViewFragment"
