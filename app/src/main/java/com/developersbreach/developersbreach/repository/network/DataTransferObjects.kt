@@ -1,6 +1,6 @@
 package com.developersbreach.developersbreach.repository.network
 
-import com.developersbreach.developersbreach.repository.database.ArticlesEntity
+import com.developersbreach.developersbreach.repository.database.entity.ArticlesEntity
 
 
 data class NetworkArticlesContainer(val articlesNetworks: List<ArticlesNetwork>)
