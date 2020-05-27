@@ -28,7 +28,7 @@
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites">
         <action
-            android:id="@+id/ArticlesToFavoriteslFragment"
+            android:id="@+id/ArticlesToFavoritesFragment"
             app:destination="@id/detailFragment" />
     </fragment>
 
