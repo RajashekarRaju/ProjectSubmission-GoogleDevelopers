@@ -1,4 +1,4 @@
-package com.developersbreach.developersbreach.repository.database
+package com.developersbreach.developersbreach.repository.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
