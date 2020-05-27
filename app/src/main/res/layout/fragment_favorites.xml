@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.developersbreach.developersbreach.viewModel.FavoritesViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -40,7 +43,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:reverseLayout="true"
             app:stackFromEnd="true"
-            tools:itemCount="6" />
+            tools:listitem="@layout/item_favorites"
+            tools:itemCount="16" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
