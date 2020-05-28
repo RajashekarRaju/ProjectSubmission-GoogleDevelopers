@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.developersbreach.databinding.ItemFavoritesBinding
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.viewModel.FavoritesViewModel
 
 
-class FavoritesAdapter(private val onClickListener: OnClickListener) :
+class FavoritesAdapter(
+    private val onClickListener: OnClickListener,
+    private val viewModel: FavoritesViewModel
+) :
     ListAdapter<Articles,
             FavoritesAdapter.FavoritesViewHolder>(DiffCallback) {
 
@@ -18,8 +22,12 @@ class FavoritesAdapter(private val onClickListener: OnClickListener) :
         ItemFavoritesBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(articles: Articles) {
+        fun bind(
+            articles: Articles,
+            viewModel: FavoritesViewModel
+        ) {
             binding.favorites = articles
+            binding.viewModel = viewModel
             binding.executePendingBindings()
         }
     }
@@ -37,7 +45,7 @@ class FavoritesAdapter(private val onClickListener: OnClickListener) :
         holder.itemView.setOnClickListener {
             onClickListener.onClick(articles)
         }
-        holder.bind(articles)
+        holder.bind(articles, viewModel)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Articles>() {

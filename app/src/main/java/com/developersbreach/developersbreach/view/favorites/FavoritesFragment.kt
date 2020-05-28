@@ -42,17 +42,18 @@ class FavoritesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewModel.favorites.observe(viewLifecycleOwner, Observer { list ->
-
-            val adapter = FavoritesAdapter(FavoritesAdapter.OnClickListener { article ->
-                this.findNavController()
-                    .navigate(FavoritesFragmentDirections.FavoritesToDetailFragment(article))
-            })
-
+            val adapter = FavoritesAdapter(onFavoriteClickListener(), viewModel)
             adapter.submitList(list)
             binding.favoritesRecyclerView.adapter = adapter
         })
+    }
+
+    private fun onFavoriteClickListener(): FavoritesAdapter.OnClickListener {
+        return FavoritesAdapter.OnClickListener { article ->
+            this.findNavController()
+                .navigate(FavoritesFragmentDirections.FavoritesToDetailFragment(article))
+        }
     }
 
 }
