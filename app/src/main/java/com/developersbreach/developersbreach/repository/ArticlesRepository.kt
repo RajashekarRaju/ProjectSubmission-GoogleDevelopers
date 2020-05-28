@@ -40,4 +40,16 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
             database.favoritesDao.insertFavorite(article.asDatabaseModel())
         }
     }
+
+    suspend fun deleteArticle(article: Articles) {
+        withContext(Dispatchers.IO) {
+            database.favoritesDao.deleteFavorite(article.asDatabaseModel())
+        }
+    }
+
+    suspend fun deleteAllArticles() {
+        withContext(Dispatchers.IO) {
+            database.favoritesDao.deleteAllFavorites()
+        }
+    }
 }

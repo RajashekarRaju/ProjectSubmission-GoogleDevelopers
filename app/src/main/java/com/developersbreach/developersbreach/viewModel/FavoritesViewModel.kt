@@ -9,6 +9,7 @@ import com.developersbreach.developersbreach.repository.database.getDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class FavoritesViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,5 +22,17 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun deleteArticle(article: Articles) {
+        CoroutineScope(viewModelJob + Dispatchers.IO).launch {
+            repository.deleteArticle(article)
+        }
+    }
+
+    fun deleteAllArticles() {
+        CoroutineScope(viewModelJob + Dispatchers.IO).launch {
+            repository.deleteAllArticles()
+        }
     }
 }

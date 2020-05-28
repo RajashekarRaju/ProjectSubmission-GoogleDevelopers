@@ -6,7 +6,10 @@ import androidx.lifecycle.LiveData
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.repository.ArticlesRepository
 import com.developersbreach.developersbreach.repository.database.getDatabase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 
 class ArticlesViewModel(application: Application) : AndroidViewModel(application) {
@@ -16,6 +19,7 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     val articles: LiveData<List<Articles>> = repository.articles
+    val favArticles: LiveData<List<Articles>> = repository.favorites
 
     init {
         refreshDataFromRepository()
@@ -35,6 +39,12 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     fun insertFavorite(article: Articles) {
         viewModelScope.launch {
             repository.insertArticle(article)
+        }
+    }
+
+    fun deleteArticle(article: Articles) {
+        CoroutineScope(viewModelJob + Dispatchers.IO).launch {
+            repository.deleteArticle(article)
         }
     }
 }

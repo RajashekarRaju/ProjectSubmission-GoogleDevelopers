@@ -15,7 +15,7 @@ interface FavoritesDao {
     fun insertFavorite(favorite: FavoritesEntity)
 
     @Delete
-    fun deleteFavorite(favorite: FavoritesEntity?)
+    fun deleteFavorite(favorite: FavoritesEntity)
 
     @Query("delete from FAVORITES_TABLE")
     fun deleteAllFavorites()
