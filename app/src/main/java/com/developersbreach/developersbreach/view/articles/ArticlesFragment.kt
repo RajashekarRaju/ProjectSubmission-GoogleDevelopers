@@ -18,11 +18,12 @@ import com.developersbreach.developersbreach.viewModel.factory.ArticleViewModelF
 class ArticlesFragment : Fragment() {
 
     private lateinit var binding: FragmentArticlesBinding
+    private lateinit var viewModel: ArticlesViewModel
 
-    private val viewModel: ArticlesViewModel by lazy {
-        val activity = requireNotNull(this.activity)
-        ViewModelProvider(this, ArticleViewModelFactory(activity.application))
-            .get(ArticlesViewModel::class.java)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val factory = ArticleViewModelFactory(requireActivity().application)
+        viewModel = ViewModelProvider(this, factory).get(ArticlesViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -31,12 +32,8 @@ class ArticlesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentArticlesBinding.inflate(inflater)
-
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
-
         return binding.root
     }
 
@@ -44,16 +41,16 @@ class ArticlesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.articles.observe(viewLifecycleOwner, Observer { list ->
-
-            val adapter = ArticlesAdapter(ArticlesAdapter.OnClickListener { article ->
-                viewModel.insertFavorite(article)
-
-                this.findNavController()
-                    .navigate(ArticlesFragmentDirections.ArticlesToDetailFragment(article))
-            })
-
+            val adapter = ArticlesAdapter(onArticleClickListener(), viewModel, this)
             adapter.submitList(list)
             binding.articlesRecyclerView.adapter = adapter
         })
+    }
+
+    private fun onArticleClickListener(): ArticlesAdapter.OnClickListener {
+        return ArticlesAdapter.OnClickListener { article ->
+            this.findNavController()
+                .navigate(ArticlesFragmentDirections.ArticlesToDetailFragment(article))
+        }
     }
 }
