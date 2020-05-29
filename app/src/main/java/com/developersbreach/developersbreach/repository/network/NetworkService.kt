@@ -11,7 +11,11 @@ import java.util.*
 
 
 private const val SCHEME_AUTHORITY = "https://developersbreach.com"
-private const val APPEND_ENDPOINT = "wp-json/wp/v2/posts"
+private const val APPEND_PATH = "wp-json/wp/v2"
+private const val APPEND_ENDPOINT_POSTS = "posts"
+private const val APPEND_ENDPOINT_TAGS = "tags"
+private const val APPEND_ENDPOINT_USERS = "users/107376512"
+
 
 fun getArticles(): NetworkArticlesContainer {
     val articlesNetworkList: List<ArticlesNetwork> = fetchArticleJsonData(startResponse())
@@ -28,7 +32,8 @@ private fun startResponse(): String {
 private fun uriBuilder(): String {
     val baseUri: Uri = Uri.parse(SCHEME_AUTHORITY)
     val uriBuilder: Uri.Builder = baseUri.buildUpon()
-    uriBuilder.appendPath(APPEND_ENDPOINT)
+    uriBuilder.appendPath(APPEND_PATH)
+    uriBuilder.appendPath(APPEND_ENDPOINT_POSTS)
     return uriBuilder.build().toString()
 }
 
