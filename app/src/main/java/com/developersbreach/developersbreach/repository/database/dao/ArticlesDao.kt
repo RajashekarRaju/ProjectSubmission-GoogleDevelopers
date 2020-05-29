@@ -15,4 +15,7 @@ interface ArticlesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllArticles(articles: List<ArticlesEntity>)
+
+    @Query("select * from ARTICLES_TABLE")
+    fun getSearchableArticles() : List<ArticlesEntity>
 }
