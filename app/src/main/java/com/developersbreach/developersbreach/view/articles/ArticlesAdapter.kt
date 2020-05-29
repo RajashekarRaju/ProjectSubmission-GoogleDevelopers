@@ -10,11 +10,9 @@ import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 
 class ArticlesAdapter(
-    private val onClickListener: OnClickListener,
-    private val viewModel: ArticlesViewModel,
-    private val articlesFragment: ArticlesFragment
+    private val viewModel: ArticlesViewModel
 ) :
-    ListAdapter<Articles, ArticlesAdapter.ArticlesViewHolder>(DiffCallback) {
+    ListAdapter<Articles, ArticlesAdapter.ArticlesViewHolder>(Articles.DiffCallback) {
 
     class ArticlesViewHolder(
         private var binding:
@@ -23,12 +21,10 @@ class ArticlesAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             articles: Articles,
-            viewModel: ArticlesViewModel,
-            fragment: ArticlesFragment
+            viewModel: ArticlesViewModel
         ) {
             binding.articles = articles
             binding.viewModel = viewModel
-            binding.fragment = fragment
             binding.executePendingBindings()
         }
     }
@@ -42,31 +38,7 @@ class ArticlesAdapter(
     }
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
-        val articles = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(articles)
-        }
-        holder.bind(articles, viewModel, articlesFragment)
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Articles>() {
-
-        override fun areItemsTheSame(
-            oldItem: Articles,
-            newItem: Articles
-        ): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(
-            oldItem: Articles,
-            newItem: Articles
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
-
-    class OnClickListener(val clickListener: (articles: Articles) -> Unit) {
-        fun onClick(articles: Articles) = clickListener(articles)
+        val articles: Articles = getItem(position)
+        holder.bind(articles, viewModel)
     }
 }

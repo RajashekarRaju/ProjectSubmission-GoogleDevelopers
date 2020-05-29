@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.developersbreach.developersbreach.databinding.FragmentArticlesBinding
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 import com.developersbreach.developersbreach.viewModel.factory.ArticleViewModelFactory
@@ -41,16 +40,9 @@ class ArticlesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.articles.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = ArticlesAdapter(onArticleClickListener(), viewModel, this)
+            val adapter = ArticlesAdapter(viewModel)
             adapter.submitList(list)
             binding.articlesRecyclerView.adapter = adapter
         })
-    }
-
-    private fun onArticleClickListener(): ArticlesAdapter.OnClickListener {
-        return ArticlesAdapter.OnClickListener { article ->
-            this.findNavController()
-                .navigate(ArticlesFragmentDirections.ArticlesToDetailFragment(article))
-        }
     }
 }

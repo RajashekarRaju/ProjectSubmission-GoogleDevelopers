@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -12,10 +13,6 @@
         <variable
             name="articles"
             type="com.developersbreach.developersbreach.model.Articles" />
-
-        <variable
-            name="fragment"
-            type="com.developersbreach.developersbreach.view.articles.ArticlesFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,10 +22,11 @@
 
         <TextView
             android:id="@+id/title_text_view"
+            app:articleToDetailListener="@{articles}"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@{articles.title + articles.id}"
+            android:text="@{articles.title}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/favorite_image_view"
@@ -42,9 +40,8 @@
             android:layout_height="40dp"
             android:layout_margin="16dp"
             android:src="@drawable/ic_favorite_add"
-            app:addFavorite="@{articles}"
-            app:getViewModel="@{viewModel}"
-            app:addReference="@{fragment}"
+            app:articleFragmentModel="@{articles}"
+            app:articleViewModel="@{viewModel}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/title_text_view"

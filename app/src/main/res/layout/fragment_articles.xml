@@ -43,8 +43,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:reverseLayout="true"
             app:stackFromEnd="true"
-            tools:listitem="@layout/item_articles"
-            tools:itemCount="16" />
+            tools:itemCount="16"
+            tools:listitem="@layout/item_articles" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

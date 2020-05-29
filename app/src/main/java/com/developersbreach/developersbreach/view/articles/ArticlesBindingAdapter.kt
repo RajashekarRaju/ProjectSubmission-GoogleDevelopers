@@ -1,37 +1,35 @@
 package com.developersbreach.developersbreach.view.articles
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.Observer
-import com.developersbreach.developersbreach.R
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
-import timber.log.Timber
 
 
-@BindingAdapter("addFavorite", "getViewModel", "addReference")
-fun bindArticleAddToFavoritesListener(
+@BindingAdapter("articleToDetailListener")
+fun bindArticleToDetailClickListener(
+    textView: TextView,
+    article: Articles
+) {
+    textView.setOnClickListener { view: View ->
+        val direction: NavDirections = ArticlesFragmentDirections.ArticlesToDetailFragment(article)
+        Navigation.findNavController(view).navigate(direction)
+    }
+}
+
+
+@BindingAdapter("articleFragmentModel", "articleViewModel")
+fun bindAddArticleToFavoritesListener(
     imageView: ImageView,
     article: Articles,
-    viewModel: ArticlesViewModel,
-    fragment: ArticlesFragment
+    viewModel: ArticlesViewModel
 ) {
-
     imageView.setOnClickListener {
         viewModel.insertFavorite(article)
-        imageView.setImageResource(R.drawable.ic_favorite_remove)
     }
-
-    viewModel.favArticles.observe(fragment, Observer { articles ->
-
-        for (i: Int in articles.indices) {
-            val id: Int = articles[i].id
-            if (id != article.id) {
-                imageView.setImageResource(R.drawable.ic_favorite_add)
-                Timber.e(id.toString())
-            } else {
-                imageView.setImageResource(R.drawable.ic_favorite_remove)
-            }
-        }
-    })
 }
+
