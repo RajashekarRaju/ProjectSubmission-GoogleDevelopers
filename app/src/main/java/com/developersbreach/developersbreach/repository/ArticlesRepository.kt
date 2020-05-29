@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.repository.database.ArticlesDatabase
+import com.developersbreach.developersbreach.repository.database.entity.ArticlesEntity
 import com.developersbreach.developersbreach.repository.database.entity.asDatabaseModel
 import com.developersbreach.developersbreach.repository.database.entity.asDomainModel
 import com.developersbreach.developersbreach.repository.network.*
@@ -51,5 +52,14 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
         withContext(Dispatchers.IO) {
             database.favoritesDao.deleteAllFavorites()
         }
+    }
+
+    suspend fun searchableArticle(): List<Articles> {
+        var searchableArticles = ArrayList<Articles>()
+        withContext(Dispatchers.IO) {
+            val articleEntity: List<ArticlesEntity> = database.articlesDao.getSearchableArticles()
+            searchableArticles = articleEntity.asDomainModel() as ArrayList<Articles>
+        }
+        return searchableArticles
     }
 }
