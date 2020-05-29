@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.developersbreach.developersbreach.model.Articles" />
+    </data>
+
+    <TextView
+        android:id="@+id/article_name_search_item_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        app:searchToDetailListener="@{article}"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="16dp"
+        android:text="@{article.title}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        tools:text="@string/search_articles_hint" />
+
+</layout>
