@@ -11,7 +11,7 @@
             type="com.developersbreach.developersbreach.viewModel.FavoritesViewModel" />
 
         <variable
-            name="favorites"
+            name="articles"
             type="com.developersbreach.developersbreach.model.Articles" />
     </data>
 
@@ -25,7 +25,8 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@{favorites.title + favorites.id}"
+            android:text="@{articles.title}"
+            app:favoriteToDetailListener="@{articles}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/favorite_remove_image_view"
@@ -38,14 +39,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            tools:src="@drawable/ic_favorite_remove"
-            app:removeFavorite="@{favorites}"
-            app:getFavViewModel="@{viewModel}"
+            app:favoriteFragmentModel="@{articles}"
+            app:favoriteViewModel="@{viewModel}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/favorites_title_text_view"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_favorite_remove" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

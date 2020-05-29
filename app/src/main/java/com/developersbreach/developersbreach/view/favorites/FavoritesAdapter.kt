@@ -2,7 +2,6 @@ package com.developersbreach.developersbreach.view.favorites
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.developersbreach.databinding.ItemFavoritesBinding
@@ -11,11 +10,10 @@ import com.developersbreach.developersbreach.viewModel.FavoritesViewModel
 
 
 class FavoritesAdapter(
-    private val onClickListener: OnClickListener,
     private val viewModel: FavoritesViewModel
 ) :
     ListAdapter<Articles,
-            FavoritesAdapter.FavoritesViewHolder>(DiffCallback) {
+            FavoritesAdapter.FavoritesViewHolder>(Articles.DiffCallback) {
 
     class FavoritesViewHolder(
         private var binding:
@@ -26,7 +24,7 @@ class FavoritesAdapter(
             articles: Articles,
             viewModel: FavoritesViewModel
         ) {
-            binding.favorites = articles
+            binding.articles = articles
             binding.viewModel = viewModel
             binding.executePendingBindings()
         }
@@ -41,31 +39,7 @@ class FavoritesAdapter(
     }
 
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
-        val articles = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(articles)
-        }
+        val articles: Articles = getItem(position)
         holder.bind(articles, viewModel)
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Articles>() {
-
-        override fun areItemsTheSame(
-            oldItem: Articles,
-            newItem: Articles
-        ): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(
-            oldItem: Articles,
-            newItem: Articles
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
-
-    class OnClickListener(val clickListener: (articles: Articles) -> Unit) {
-        fun onClick(articles: Articles) = clickListener(articles)
     }
 }
