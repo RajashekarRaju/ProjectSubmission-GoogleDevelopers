@@ -7,6 +7,7 @@ import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 
 
 class ArticleViewModelFactory(val app: Application) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ArticlesViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

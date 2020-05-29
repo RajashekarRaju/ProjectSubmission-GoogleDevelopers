@@ -19,7 +19,6 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     val articles: LiveData<List<Articles>> = repository.articles
-    val favArticles: LiveData<List<Articles>> = repository.favorites
 
     init {
         refreshDataFromRepository()
