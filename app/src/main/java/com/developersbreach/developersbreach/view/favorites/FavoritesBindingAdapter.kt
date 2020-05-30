@@ -1,6 +1,5 @@
 package com.developersbreach.developersbreach.view.favorites
 
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -12,31 +11,27 @@ import com.developersbreach.developersbreach.viewModel.FavoritesViewModel
 
 
 @BindingAdapter("favoriteToDetailListener")
-fun bindFavoriteToDetailClickListener(
-    textView: TextView,
-    article: Articles
-) {
-    textView.setOnClickListener { view: View ->
-        val direction: NavDirections = FavoritesFragmentDirections.FavoritesToDetailFragment(article)
+fun TextView.setFavoriteToDetailClickListener(article: Articles) {
+    this.setOnClickListener { view ->
+        val direction: NavDirections =
+            FavoritesFragmentDirections.FavoritesToDetailFragment(article)
         Navigation.findNavController(view).navigate(direction)
     }
 }
 
-
 @BindingAdapter("favoriteFragmentModel", "favoriteViewModel")
-fun bindRemoveFavoriteListener(
-    imageView: ImageView,
+fun ImageView.setFavoriteFragmentModel(
     article: Articles,
     viewModel: FavoritesViewModel
 ) {
-    imageView.setImageResource(R.drawable.ic_favorite_remove)
+    let { imageView ->
+        imageView.setImageResource(R.drawable.ic_favorite_remove)
+        imageView.setOnClickListener { viewModel.deleteArticle(article) }
 
-    imageView.setOnLongClickListener {
-        viewModel.deleteAllArticles()
-        true
+        imageView.setOnLongClickListener {
+            viewModel.deleteAllArticles()
+            true
+        }
     }
 
-    imageView.setOnClickListener {
-        viewModel.deleteArticle(article)
-    }
 }
