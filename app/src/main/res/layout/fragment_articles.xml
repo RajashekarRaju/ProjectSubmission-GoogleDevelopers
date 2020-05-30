@@ -41,8 +41,6 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:reverseLayout="true"
-            app:stackFromEnd="true"
             tools:itemCount="16"
             tools:listitem="@layout/item_articles" />
 
