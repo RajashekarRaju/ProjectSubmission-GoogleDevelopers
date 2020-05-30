@@ -15,24 +15,24 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val repository = ArticlesRepository(getDatabase(application))
     private var viewModelJob = SupervisorJob()
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
     val favorites: LiveData<List<Articles>> = repository.favorites
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
-
     fun deleteArticle(article: Articles) {
-        CoroutineScope(viewModelJob + Dispatchers.IO).launch {
+        viewModelScope.launch {
             repository.deleteArticle(article)
         }
     }
 
     fun deleteAllArticles() {
-        CoroutineScope(viewModelJob + Dispatchers.IO).launch {
+        viewModelScope.launch {
             repository.deleteAllArticles()
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
