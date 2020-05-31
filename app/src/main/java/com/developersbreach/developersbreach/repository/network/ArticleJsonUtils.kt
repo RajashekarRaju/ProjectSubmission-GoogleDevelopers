@@ -28,10 +28,7 @@ fun fetchArticleJsonData(json: String?): List<ArticlesNetwork> {
         for (i: Int in 0 until baseJsonArray.length()) {
             val baseJsonObject: JSONObject = baseJsonArray.getJSONObject(i)
 
-            var id = 0
-            if (baseJsonObject.has(ARTICLE_ID)) {
-                id = baseJsonObject.getInt(ARTICLE_ID)
-            }
+            val id = 0
 
             val jsonObject: JSONObject = baseJsonObject.getJSONObject(JSON_OBJECT_TITLE)
 

@@ -7,7 +7,7 @@ import com.developersbreach.developersbreach.model.Articles
 
 @Entity(tableName = "ARTICLES_TABLE")
 data class ArticlesEntity constructor(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val title: String
 )
