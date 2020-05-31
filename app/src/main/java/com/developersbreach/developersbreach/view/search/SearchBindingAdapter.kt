@@ -14,7 +14,8 @@ fun bindSearchArticleToDetailClickListener(
     article: Articles
 ) {
     textView.setOnClickListener { view: View? ->
-        val direction: NavDirections = SearchFragmentDirections.SearchToDetailFragment(article)
+        val direction: NavDirections =
+            SearchFragmentDirections.SearchToDetailFragment(article, false)
         Navigation.findNavController(view!!).navigate(direction)
     }
 }

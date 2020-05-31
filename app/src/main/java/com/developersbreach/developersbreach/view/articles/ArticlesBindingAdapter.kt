@@ -16,7 +16,8 @@ fun bindArticleToDetailClickListener(
     article: Articles
 ) {
     textView.setOnClickListener { view: View ->
-        val direction: NavDirections = ArticlesFragmentDirections.ArticlesToDetailFragment(article)
+        val direction: NavDirections =
+            ArticlesFragmentDirections.ArticlesToDetailFragment(article, true)
         Navigation.findNavController(view).navigate(direction)
     }
 }

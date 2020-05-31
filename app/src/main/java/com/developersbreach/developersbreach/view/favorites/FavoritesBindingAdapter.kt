@@ -14,7 +14,7 @@ import com.developersbreach.developersbreach.viewModel.FavoritesViewModel
 fun TextView.setFavoriteToDetailClickListener(article: Articles) {
     this.setOnClickListener { view ->
         val direction: NavDirections =
-            FavoritesFragmentDirections.FavoritesToDetailFragment(article)
+            FavoritesFragmentDirections.FavoritesToDetailFragment(article, false)
         Navigation.findNavController(view).navigate(direction)
     }
 }

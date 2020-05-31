@@ -12,26 +12,34 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 
-class DetailViewModel(application: Application, article: Articles) :
+class DetailViewModel(
+    application: Application,
+    article: Articles,
+    userInputEnabled: Boolean
+) :
     AndroidViewModel(application) {
 
     private val repository = ArticlesRepository(getDatabase(application))
     private var viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    private val _articleList: MutableLiveData<List<Articles>> = MutableLiveData()
-    val articleList: MutableLiveData<List<Articles>>
-        get() = _articleList
+    private val _viewPagerList: MutableLiveData<List<Articles>> = MutableLiveData()
+    val viewPagerList: MutableLiveData<List<Articles>>
+        get() = _viewPagerList
 
     private val _selectedArticle = MutableLiveData<Articles>()
     val selectedArticle: MutableLiveData<Articles>
         get() = _selectedArticle
 
-    init {
-        _selectedArticle.value = article
+    private val _userInputEnabled = MutableLiveData<Boolean>()
+    val userInputEnabled: MutableLiveData<Boolean>
+        get() = _userInputEnabled
 
+    init {
         viewModelScope.launch {
-            _articleList.postValue(repository.searchableArticle())
+            _viewPagerList.postValue(repository.searchableArticle())
+            _selectedArticle.postValue(article)
+            _userInputEnabled.postValue(userInputEnabled)
         }
     }
 }
