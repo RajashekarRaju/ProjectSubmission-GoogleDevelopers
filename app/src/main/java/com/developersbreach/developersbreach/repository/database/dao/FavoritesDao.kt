@@ -8,7 +8,7 @@ import com.developersbreach.developersbreach.repository.database.entity.Favorite
 @Dao
 interface FavoritesDao {
 
-    @Query("select * from FAVORITES_TABLE ORDER BY id DESC")
+    @Query("select * from FAVORITES_TABLE")
     fun getFavorites(): LiveData<List<FavoritesEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

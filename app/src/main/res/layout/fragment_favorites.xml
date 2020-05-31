@@ -37,6 +37,8 @@
             android:id="@+id/favorites_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:stackFromEnd="true"
+            app:reverseLayout="true"
             android:layout_marginBottom="?actionBarSize"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
