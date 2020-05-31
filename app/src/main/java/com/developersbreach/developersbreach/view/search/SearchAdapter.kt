@@ -6,10 +6,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.developersbreach.databinding.ItemSearchBinding
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.view.search.SearchAdapter.*
 
-class SearchAdapter : ListAdapter<Articles, SearchAdapter.SearchViewHolder>(Articles.DiffCallback) {
+class SearchAdapter :
+    ListAdapter<Articles, SearchViewHolder>(Articles.DiffCallback) {
 
-    class SearchViewHolder(private var binding: ItemSearchBinding) :
+    class SearchViewHolder(
+        private var binding: ItemSearchBinding
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(articles: Articles) {
             binding.article = articles

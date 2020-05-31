@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.developersbreach.databinding.ItemArticlesBinding
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.view.articles.ArticlesAdapter.*
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 
 class ArticlesAdapter(
     private val viewModel: ArticlesViewModel
 ) :
-    ListAdapter<Articles, ArticlesAdapter.ArticlesViewHolder>(Articles.DiffCallback) {
+    ListAdapter<Articles, ArticlesViewHolder>(Articles.DiffCallback) {
 
     class ArticlesViewHolder(
         private var binding:

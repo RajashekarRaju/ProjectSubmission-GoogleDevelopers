@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.developersbreach.databinding.ItemViewPagerBinding
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.view.detail.DetailViewPagerAdapter.*
 
 
 class DetailViewPagerAdapter :
-    ListAdapter<Articles, DetailViewPagerAdapter.DetailViewHolder>(Articles.DiffCallback) {
-
+    ListAdapter<Articles, DetailViewHolder>(Articles.DiffCallback) {
 
     class DetailViewHolder(
         private var binding: ItemViewPagerBinding
