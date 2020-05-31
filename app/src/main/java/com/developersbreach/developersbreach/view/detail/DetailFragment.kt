@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 
 import com.developersbreach.developersbreach.databinding.FragmentDetailBinding
+import com.developersbreach.developersbreach.utils.ZoomOutPageTransformer
 import com.developersbreach.developersbreach.viewModel.DetailViewModel
 import com.developersbreach.developersbreach.viewModel.factory.DetailViewModelFactory
 
@@ -38,6 +39,8 @@ class DetailFragment : Fragment() {
     ): View? {
         binding = FragmentDetailBinding.inflate(inflater)
         viewPager = binding.detailViewPager
+        binding.detailViewPager.setPageTransformer(ZoomOutPageTransformer())
+        binding.lifecycleOwner = this
         return binding.root
     }
 
