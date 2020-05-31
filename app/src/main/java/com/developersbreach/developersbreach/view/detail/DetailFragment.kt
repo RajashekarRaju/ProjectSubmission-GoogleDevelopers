@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 
 import com.developersbreach.developersbreach.databinding.FragmentDetailBinding
+import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.utils.ZoomOutPageTransformer
 import com.developersbreach.developersbreach.viewModel.DetailViewModel
 import com.developersbreach.developersbreach.viewModel.factory.DetailViewModelFactory
@@ -26,10 +27,11 @@ class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val args = requireArguments()
+        val args: Bundle = requireArguments()
         val application: Application = requireActivity().application
-        val article = DetailFragmentArgs.fromBundle(args).detailFragmentArgs
-        val factory = DetailViewModelFactory(application, article)
+        val article: Articles = DetailFragmentArgs.fromBundle(args).detailFragmentArgs
+        val isUserInputEnabled: Boolean = DetailFragmentArgs.fromBundle(args).fragmentClassArgs
+        val factory = DetailViewModelFactory(application, article, isUserInputEnabled)
         viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
     }
 
@@ -47,7 +49,7 @@ class DetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.articleList.observe(viewLifecycleOwner, Observer { sportsList ->
+        viewModel.viewPagerList.observe(viewLifecycleOwner, Observer { sportsList ->
             val detailViewPagerAdapter = DetailViewPagerAdapter()
             detailViewPagerAdapter.submitList(sportsList)
             viewPager.adapter = detailViewPagerAdapter
@@ -55,6 +57,10 @@ class DetailFragment : Fragment() {
             viewModel.selectedArticle.observe(viewLifecycleOwner, Observer { selectedArticle ->
                 val correctPosition = selectedArticle.id - 1
                 viewPager.setCurrentItem(correctPosition, false)
+            })
+
+            viewModel.userInputEnabled.observe(viewLifecycleOwner, Observer { isUserInputEnabled ->
+                viewPager.isUserInputEnabled = isUserInputEnabled
             })
         })
     }

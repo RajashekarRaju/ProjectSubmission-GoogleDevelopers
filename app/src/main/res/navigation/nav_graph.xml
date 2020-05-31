@@ -50,6 +50,9 @@
         <argument
             android:name="detailFragmentArgs"
             app:argType="com.developersbreach.developersbreach.model.Articles" />
+        <argument
+            android:name="fragmentClassArgs"
+            app:argType="boolean" />
     </fragment>
 
     <fragment
