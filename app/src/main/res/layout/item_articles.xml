@@ -26,7 +26,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@{articles.title}"
+            android:text='@{articles.title}'
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/favorite_image_view"

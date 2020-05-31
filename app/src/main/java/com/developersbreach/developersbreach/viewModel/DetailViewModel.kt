@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 class DetailViewModel(application: Application, article: Articles) :
@@ -33,7 +32,6 @@ class DetailViewModel(application: Application, article: Articles) :
 
         viewModelScope.launch {
             _articleList.postValue(repository.searchableArticle())
-            Timber.e(_articleList.toString())
         }
     }
 }
