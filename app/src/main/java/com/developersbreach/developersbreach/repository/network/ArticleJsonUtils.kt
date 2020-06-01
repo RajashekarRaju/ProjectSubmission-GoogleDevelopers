@@ -7,7 +7,6 @@ import java.util.*
 
 private const val JSON_OBJECT_TITLE = "title"
 private const val JSON_OBJECT_EXCERPT = "excerpt"
-private const val JSON_ARRAY_TAGS = "tags"
 
 private const val ARTICLE_ID = "id"
 private const val ARTICLE_TITLE = "rendered"
@@ -28,21 +27,56 @@ fun fetchArticleJsonData(json: String?): List<ArticlesNetwork> {
         for (i: Int in 0 until baseJsonArray.length()) {
             val baseJsonObject: JSONObject = baseJsonArray.getJSONObject(i)
 
-            val id = baseJsonArray.length() - i
+            val jsonObjectTitle = baseJsonObject.getJSONObject(JSON_OBJECT_TITLE)
+            val jsonObjectExcerpt = baseJsonObject.getJSONObject(JSON_OBJECT_EXCERPT)
+
+            val id: Int = baseJsonArray.length() - i
 
             var articleId = 0
             if (baseJsonObject.has(ARTICLE_ID)) {
                 articleId = baseJsonObject.getInt(ARTICLE_ID)
             }
 
-            val jsonObject: JSONObject = baseJsonObject.getJSONObject(JSON_OBJECT_TITLE)
-
-            var title: String? = ""
-            if (jsonObject.has(ARTICLE_TITLE)) {
-                title = jsonObject.getString(ARTICLE_TITLE)
+            var banner: String? = ""
+            if (baseJsonObject.has(ARTICLE_BANNER)) {
+                banner = baseJsonObject.getString(ARTICLE_BANNER)
             }
 
-            val articlesNetwork = ArticlesNetwork(id, articleId, title!!)
+            var title: String? = ""
+            if (jsonObjectTitle.has(ARTICLE_TITLE)) {
+                title = jsonObjectTitle.getString(ARTICLE_TITLE)
+            }
+
+            var postedDate: String? = ""
+            if (baseJsonObject.has(ARTICLE_POSTED_DATE)) {
+                postedDate = baseJsonObject.getString(ARTICLE_POSTED_DATE)
+            }
+
+            var urlLink: String? = ""
+            if (baseJsonObject.has(ARTICLE_URL_LINK)) {
+                urlLink = baseJsonObject.getString(ARTICLE_URL_LINK)
+            }
+
+            var excerpt: String? = ""
+            if (jsonObjectExcerpt.has(ARTICLE_EXCERPT)) {
+                excerpt = jsonObjectExcerpt.getString(ARTICLE_EXCERPT)
+            }
+
+            var authorId = 0
+            if (baseJsonObject.has(ARTICLE_AUTHOR)) {
+                authorId = baseJsonObject.getInt(ARTICLE_AUTHOR)
+            }
+
+            val articlesNetwork = ArticlesNetwork(
+                id,
+                articleId,
+                title!!,
+                banner!!,
+                postedDate!!,
+                urlLink!!,
+                excerpt!!,
+                authorId
+            )
             articlesNetworkList.add(articlesNetwork)
         }
 
