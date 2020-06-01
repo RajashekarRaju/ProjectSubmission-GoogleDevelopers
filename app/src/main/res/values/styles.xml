@@ -12,4 +12,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Toolbar.DetailTitle" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
 </resources>
