@@ -27,8 +27,6 @@
                 android:layout_margin="8dp"
                 android:clipToPadding="false"
                 android:orientation="vertical"
-                app:stackFromEnd="true"
-                app:reverseLayout="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/header_search_bar"
