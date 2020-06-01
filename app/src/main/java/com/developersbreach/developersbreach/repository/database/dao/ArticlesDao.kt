@@ -10,7 +10,7 @@ import com.developersbreach.developersbreach.repository.database.entity.Articles
 @Dao
 interface ArticlesDao {
 
-    @Query("select * from ARTICLES_TABLE order by ID DESC")
+    @Query("select * from ARTICLES_TABLE")
     fun getArticles(): LiveData<List<ArticlesEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
