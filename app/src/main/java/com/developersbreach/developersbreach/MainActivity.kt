@@ -3,11 +3,13 @@ package com.developersbreach.developersbreach
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.developersbreach.developersbreach.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,8 +21,22 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         navController = this.findNavController(R.id.nav_host_fragment)
+        setBottomNavigation(binding.bottomNavigation)
+        setDestinationListener(navController)
+    }
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+    private fun setDestinationListener(controller: NavController) {
+        controller.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.detailFragment) {
+                binding.bottomNavigation.visibility = View.GONE
+            } else {
+                binding.bottomNavigation.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun setBottomNavigation(bottomNavigation: BottomNavigationView) {
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.articlesFragment -> navigateToDestination(item)
                 R.id.searchFragment -> navigateToDestination(item)
