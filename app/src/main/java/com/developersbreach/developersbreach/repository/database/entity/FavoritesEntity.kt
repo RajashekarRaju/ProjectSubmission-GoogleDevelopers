@@ -17,15 +17,35 @@ data class FavoritesEntity constructor(
     val articleId: Int,
 
     @ColumnInfo(name = "FAVORITE_TITLE")
-    val title: String
+    val title: String,
+
+    @ColumnInfo(name = "FAVORITE_BANNER")
+    val banner: String,
+
+    @ColumnInfo(name = "FAVORITE_POSTED_DATE")
+    val postedDate: String,
+
+    @ColumnInfo(name = "FAVORITE_URL_LINK")
+    val urlLink: String,
+
+    @ColumnInfo(name = "FAVORITE_EXCERPT")
+    val excerpt: String,
+
+    @ColumnInfo(name = "FAVORITE_AUTHOR_ID")
+    val authorId: Int
 )
 
 fun List<FavoritesEntity>.asDomainModel(): List<Articles> {
-    return map { favoritesEntity ->
+    return map {
         Articles(
-            id = favoritesEntity.id,
-            articleId = favoritesEntity.articleId,
-            title = favoritesEntity.title
+            id = it.id,
+            articleId = it.articleId,
+            title = it.title,
+            banner = it.banner,
+            postedDate = it.postedDate,
+            urlLink = it.urlLink,
+            excerpt = it.excerpt,
+            authorId = it.authorId
         )
     }
 }
@@ -34,6 +54,11 @@ fun Articles.asDatabaseModel(): FavoritesEntity {
     return FavoritesEntity(
         id = this.id,
         articleId = this.articleId,
-        title = this.title
+        title = this.title,
+        banner = this.banner,
+        postedDate = this.postedDate,
+        urlLink = this.urlLink,
+        excerpt = this.excerpt,
+        authorId = this.authorId
     )
 }

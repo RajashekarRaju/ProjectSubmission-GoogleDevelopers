@@ -9,7 +9,12 @@ import kotlinx.android.parcel.Parcelize
 data class Articles(
     val id: Int,
     val articleId: Int,
-    val title: String
+    val title: String,
+    val banner: String,
+    val postedDate: String,
+    val urlLink: String,
+    val excerpt: String,
+    val authorId: Int
 ) : Parcelable {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Articles>() {

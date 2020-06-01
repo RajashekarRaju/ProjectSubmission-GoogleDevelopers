@@ -8,7 +8,12 @@ data class NetworkArticlesContainer(val articlesNetworks: List<ArticlesNetwork>)
 data class ArticlesNetwork(
     val id: Int,
     val articleId: Int,
-    val title: String
+    val title: String,
+    val banner: String,
+    val postedDate: String,
+    val urlLink: String,
+    val excerpt: String,
+    val authorId: Int
 )
 
 fun NetworkArticlesContainer.asDatabaseModel(): List<ArticlesEntity> {
@@ -16,7 +21,12 @@ fun NetworkArticlesContainer.asDatabaseModel(): List<ArticlesEntity> {
         ArticlesEntity(
             id = it.id,
             articleId = it.articleId,
-            title = it.title
+            title = it.title,
+            banner = it.banner,
+            postedDate = it.postedDate,
+            urlLink = it.urlLink,
+            excerpt = it.excerpt,
+            authorId = it.authorId
         )
     }
 }
