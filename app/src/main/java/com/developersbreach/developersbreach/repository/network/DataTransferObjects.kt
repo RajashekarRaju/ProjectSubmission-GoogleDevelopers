@@ -1,5 +1,6 @@
 package com.developersbreach.developersbreach.repository.network
 
+import com.developersbreach.developersbreach.model.Tags
 import com.developersbreach.developersbreach.repository.database.entity.ArticlesEntity
 
 
@@ -13,7 +14,8 @@ data class ArticlesNetwork(
     val postedDate: String,
     val urlLink: String,
     val excerpt: String,
-    val authorId: Int
+    val authorId: Int,
+    val tagList: List<Tags>
 )
 
 fun NetworkArticlesContainer.asDatabaseModel(): List<ArticlesEntity> {
@@ -26,7 +28,8 @@ fun NetworkArticlesContainer.asDatabaseModel(): List<ArticlesEntity> {
             postedDate = it.postedDate,
             urlLink = it.urlLink,
             excerpt = it.excerpt,
-            authorId = it.authorId
+            authorId = it.authorId,
+            tagList = it.tagList
         )
     }
 }

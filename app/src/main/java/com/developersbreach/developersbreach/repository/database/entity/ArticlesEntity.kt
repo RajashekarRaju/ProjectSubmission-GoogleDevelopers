@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.model.Tags
 
 @Entity(tableName = "ARTICLES_TABLE")
 data class ArticlesEntity constructor(
@@ -31,7 +32,10 @@ data class ArticlesEntity constructor(
     val excerpt: String,
 
     @ColumnInfo(name = "ARTICLE_AUTHOR_ID")
-    val authorId: Int
+    val authorId: Int,
+
+    @ColumnInfo(name = "ARTICLE_TAG_LIST")
+    val tagList: List<Tags>
 )
 
 fun List<ArticlesEntity>.asDomainModel(): List<Articles> {
@@ -44,7 +48,8 @@ fun List<ArticlesEntity>.asDomainModel(): List<Articles> {
             postedDate = it.postedDate,
             urlLink = it.urlLink,
             excerpt = it.excerpt,
-            authorId = it.authorId
+            authorId = it.authorId,
+            tagList = it.tagList
         )
     }
 }

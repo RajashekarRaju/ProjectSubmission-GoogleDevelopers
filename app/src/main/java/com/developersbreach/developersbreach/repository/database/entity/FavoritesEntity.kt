@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.model.Tags
 
 
 @Entity(tableName = "FAVORITES_TABLE")
@@ -32,7 +33,10 @@ data class FavoritesEntity constructor(
     val excerpt: String,
 
     @ColumnInfo(name = "FAVORITE_AUTHOR_ID")
-    val authorId: Int
+    val authorId: Int,
+
+    @ColumnInfo(name = "FAVORITE_TAG_LIST")
+    val tagList: List<Tags>
 )
 
 fun List<FavoritesEntity>.asDomainModel(): List<Articles> {
@@ -45,7 +49,8 @@ fun List<FavoritesEntity>.asDomainModel(): List<Articles> {
             postedDate = it.postedDate,
             urlLink = it.urlLink,
             excerpt = it.excerpt,
-            authorId = it.authorId
+            authorId = it.authorId,
+            tagList = it.tagList
         )
     }
 }
@@ -59,6 +64,7 @@ fun Articles.asDatabaseModel(): FavoritesEntity {
         postedDate = this.postedDate,
         urlLink = this.urlLink,
         excerpt = this.excerpt,
-        authorId = this.authorId
+        authorId = this.authorId,
+        tagList = this.tagList
     )
 }

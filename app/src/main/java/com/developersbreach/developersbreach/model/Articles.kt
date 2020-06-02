@@ -14,7 +14,8 @@ data class Articles(
     val postedDate: String,
     val urlLink: String,
     val excerpt: String,
-    val authorId: Int
+    val authorId: Int,
+    val tagList: List<Tags>
 ) : Parcelable {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Articles>() {
