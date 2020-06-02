@@ -1,13 +1,14 @@
 package com.developersbreach.developersbreach.repository.network
 
+import com.developersbreach.developersbreach.model.Author
+import com.developersbreach.developersbreach.model.Tags
 import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
-import java.util.*
+import kotlin.collections.ArrayList
 
 private const val JSON_OBJECT_TITLE = "title"
 private const val JSON_OBJECT_EXCERPT = "excerpt"
-
 private const val ARTICLE_ID = "id"
 private const val ARTICLE_TITLE = "rendered"
 private const val ARTICLE_POSTED_DATE = "date"
@@ -17,12 +18,85 @@ private const val ARTICLE_AUTHOR = "author"
 private const val ARTICLE_BANNER = "jetpack_featured_media_url"
 
 
-fun fetchArticleJsonData(json: String?): List<ArticlesNetwork> {
+private const val JSON_OBJECT_AVATAR = "avatar_urls"
+private const val AUTHOR_ID = "id"
+private const val AUTHOR_NAME = "name"
+private const val AUTHOR_DESCRIPTION = "description"
+private const val AUTHOR_AVATAR = "96"
+
+
+private const val TAG_ID = "id"
+private const val TAG_NAME = "name"
+
+
+
+fun fetchAuthorJsonData(response: String): Author {
+
+    val baseJsonObject = JSONObject(response)
+
+    var id = 0
+    if (baseJsonObject.has(AUTHOR_ID)) {
+        id = baseJsonObject.getInt(AUTHOR_ID)
+    }
+
+    var name: String? = ""
+    if (baseJsonObject.has(AUTHOR_NAME)) {
+        name = baseJsonObject.getString(AUTHOR_NAME)
+    }
+
+    var description: String? = ""
+    if (baseJsonObject.has(AUTHOR_DESCRIPTION)) {
+        description = baseJsonObject.getString(AUTHOR_DESCRIPTION)
+    }
+
+    val jsonObjectAvatar = baseJsonObject.getJSONObject(JSON_OBJECT_AVATAR)
+
+    var avatarLink: String? = ""
+    if (jsonObjectAvatar.has(AUTHOR_AVATAR)) {
+        avatarLink = jsonObjectAvatar.getString(AUTHOR_AVATAR)
+    }
+
+    return Author(id, name!!, description!!, avatarLink!!)
+}
+
+fun fetchTagsJsonData(response: String): List<Tags> {
+
+    val articleTags: MutableList<Tags> = ArrayList()
+
+    try {
+        val baseJsonArray = JSONArray(response)
+
+        for (i: Int in 0 until baseJsonArray.length()) {
+            val baseJsonObject: JSONObject = baseJsonArray.getJSONObject(i)
+
+            var tagId = 0
+            if (baseJsonObject.has(TAG_ID)) {
+                tagId = baseJsonObject.getInt(TAG_ID)
+            }
+
+            var tagName: String? = ""
+            if (baseJsonObject.has(TAG_NAME)) {
+                tagName = baseJsonObject.getString(TAG_NAME)
+            }
+
+            val tags = Tags(tagId, tagName!!)
+            articleTags.add(tags)
+        }
+
+    } catch (e: Exception) {
+        Timber.e("Problem parsing fetchTagsJsonData results")
+    }
+
+    return articleTags
+}
+
+
+fun fetchArticleJsonData(response: String?): List<ArticlesNetwork> {
 
     val articlesNetworkList: MutableList<ArticlesNetwork> = ArrayList()
 
     try {
-        val baseJsonArray = JSONArray(json)
+        val baseJsonArray = JSONArray(response)
 
         for (i: Int in 0 until baseJsonArray.length()) {
             val baseJsonObject: JSONObject = baseJsonArray.getJSONObject(i)
