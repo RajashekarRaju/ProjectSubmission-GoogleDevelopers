@@ -1,9 +1,7 @@
 package com.developersbreach.developersbreach.repository.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.developersbreach.developersbreach.repository.database.dao.ArticlesDao
 import com.developersbreach.developersbreach.repository.database.dao.FavoritesDao
 import com.developersbreach.developersbreach.repository.database.entity.ArticlesEntity
@@ -11,6 +9,7 @@ import com.developersbreach.developersbreach.repository.database.entity.Favorite
 
 
 @Database(entities = [ArticlesEntity::class, FavoritesEntity::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class ArticlesDatabase : RoomDatabase() {
     abstract val articlesDao: ArticlesDao
     abstract val favoritesDao: FavoritesDao
