@@ -1,6 +1,7 @@
 package com.developersbreach.developersbreach.view.detail
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.navigation.Navigation
@@ -15,6 +16,15 @@ import com.google.android.material.snackbar.Snackbar
 @BindingAdapter("bindImage")
 fun ImageView.setImageResource(articles: Articles) {
     Glide.with(this.context).load(articles.banner).into(this)
+}
+
+
+@BindingAdapter("bindTagsText")
+fun TextView.setTagText(articles: Articles) {
+    val tagList = articles.tagList
+    for (tag in tagList) {
+        this.text = tagList.toString()
+    }
 }
 
 
