@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.developersbreach.developersbreach.model.Articles
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 
 @BindingAdapter("bindImage")
@@ -47,4 +49,12 @@ fun AppBarLayout.setAppbar(articles: Articles, collapsingToolbar: CollapsingTool
             }
         }
     })
+}
+
+
+@BindingAdapter("bindDetailFab")
+fun FloatingActionButton.setDetailFab(articles: Articles) {
+    this.setOnClickListener { view ->
+        Snackbar.make(view, "Added to Favorites ${articles.id}", Snackbar.LENGTH_SHORT).show()
+    }
 }
