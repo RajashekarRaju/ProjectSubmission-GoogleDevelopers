@@ -30,11 +30,6 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
-
     fun insertFavorite(article: Articles) {
         viewModelScope.launch {
             repository.insertArticle(article)
@@ -45,5 +40,10 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
         CoroutineScope(viewModelJob + Dispatchers.IO).launch {
             repository.deleteArticle(article)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
