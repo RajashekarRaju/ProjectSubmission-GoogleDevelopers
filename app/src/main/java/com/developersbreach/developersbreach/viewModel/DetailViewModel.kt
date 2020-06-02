@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.developersbreach.developersbreach.model.Articles
-import com.developersbreach.developersbreach.model.Tags
 import com.developersbreach.developersbreach.repository.ArticlesRepository
 import com.developersbreach.developersbreach.repository.database.getDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -36,16 +35,12 @@ class DetailViewModel(
     val userInputEnabled: MutableLiveData<Boolean>
         get() = _userInputEnabled
 
-    private val _tagsList: MutableLiveData<List<Tags>> = MutableLiveData()
-    val tagList: MutableLiveData<List<Tags>>
-        get() = _tagsList
 
     init {
         viewModelScope.launch {
             _viewPagerList.postValue(repository.searchableArticle())
             _selectedArticle.postValue(article)
             _userInputEnabled.postValue(userInputEnabled)
-            _tagsList.postValue(repository.getArticleTags(article.articleId))
             repository.getAuthorDetails()
         }
 

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.model.Author
-import com.developersbreach.developersbreach.model.Tags
 import com.developersbreach.developersbreach.repository.database.ArticlesDatabase
 import com.developersbreach.developersbreach.repository.database.entity.ArticlesEntity
 import com.developersbreach.developersbreach.repository.database.entity.asDatabaseModel
@@ -73,17 +72,5 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
                 e.printStackTrace()
             }
         }
-    }
-
-    suspend fun getArticleTags(articleId: Int): List<Tags> {
-        var tags: List<Tags> = ArrayList()
-        withContext(Dispatchers.IO) {
-            try {
-                tags = getTags(articleId)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-        return tags
     }
 }

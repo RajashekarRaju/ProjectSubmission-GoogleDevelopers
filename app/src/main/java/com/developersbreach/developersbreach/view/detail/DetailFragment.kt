@@ -15,7 +15,7 @@ import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.utils.ZoomOutPageTransformer
 import com.developersbreach.developersbreach.viewModel.DetailViewModel
 import com.developersbreach.developersbreach.viewModel.factory.DetailViewModelFactory
-import timber.log.Timber
+
 
 /**
  * A simple [Fragment] subclass.
@@ -62,12 +62,6 @@ class DetailFragment : Fragment() {
 
             viewModel.userInputEnabled.observe(viewLifecycleOwner, Observer { isUserInputEnabled ->
                 viewPager.isUserInputEnabled = isUserInputEnabled
-            })
-
-            viewModel.tagList.observe(viewLifecycleOwner, Observer { tagList ->
-                for (tag in tagList) {
-                    Timber.e(tag.name)
-                }
             })
         })
     }

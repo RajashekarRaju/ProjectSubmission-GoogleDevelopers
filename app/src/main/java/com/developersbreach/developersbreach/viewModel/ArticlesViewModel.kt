@@ -36,12 +36,6 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun deleteArticle(article: Articles) {
-        CoroutineScope(viewModelJob + Dispatchers.IO).launch {
-            repository.deleteArticle(article)
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
