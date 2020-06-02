@@ -15,9 +15,8 @@ import java.util.*
 private const val SCHEME_AUTHORITY = "https://developersbreach.com"
 private const val APPEND_PATH = "wp-json/wp/v2"
 private const val APPEND_ENDPOINT_POSTS = "posts"
-private const val APPEND_PATH_TAGS = "tags"
-private const val APPEND_ENDPOINT_TAGS = "post"
 private const val APPEND_ENDPOINT_USERS = "users/107376512"
+
 
 
 fun getArticles(): NetworkArticlesContainer {
@@ -25,8 +24,8 @@ fun getArticles(): NetworkArticlesContainer {
     return NetworkArticlesContainer(articlesNetworkList)
 }
 
-fun getTags(articleId: Int): List<Tags> {
-    return fetchTagsJsonData(tagsResponse(articleId))
+fun getTagsForArticle(links: String): List<Tags> {
+    return fetchTagsJsonData(tagsResponse(links))
 }
 
 fun getAuthor(): Author {
@@ -42,17 +41,16 @@ private fun articleResponse(): String {
 }
 
 @Throws(IOException::class)
-private fun authorResponse(): String {
-    val uriString: String = authorBuilder()
+fun tagsResponse(links: String): String {
+    val uriString: String = links
     val requestUrl: URL = createUrl(uriString)!!
     return getResponseFromHttpUrl(requestUrl)
 }
 
 @Throws(IOException::class)
-private fun tagsResponse(articleId: Int): String {
-    val uriString: String = tagsBuilder(articleId)
+private fun authorResponse(): String {
+    val uriString: String = authorBuilder()
     val requestUrl: URL = createUrl(uriString)!!
-    Timber.e(requestUrl.toString())
     return getResponseFromHttpUrl(requestUrl)
 }
 
@@ -70,15 +68,6 @@ private fun authorBuilder(): String {
     val uriBuilder: Uri.Builder = baseUri.buildUpon()
     uriBuilder.appendPath(APPEND_PATH)
     uriBuilder.appendPath(APPEND_ENDPOINT_USERS)
-    return uriBuilder.build().toString()
-}
-
-private fun tagsBuilder(articleId: Int): String {
-    val baseUri: Uri = Uri.parse(SCHEME_AUTHORITY)
-    val uriBuilder: Uri.Builder = baseUri.buildUpon()
-    uriBuilder.appendEncodedPath(APPEND_PATH)
-    uriBuilder.appendEncodedPath(APPEND_PATH_TAGS)
-    uriBuilder.appendQueryParameter(APPEND_ENDPOINT_TAGS, articleId.toString())
     return uriBuilder.build().toString()
 }
 
