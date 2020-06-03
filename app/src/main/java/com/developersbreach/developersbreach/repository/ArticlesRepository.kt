@@ -37,6 +37,15 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
         }
     }
 
+    suspend fun getAuthor(): Author {
+        var author: Author? = null
+        withContext(Dispatchers.IO) {
+            val authorNetworkObjects: NetworkAuthorContainer = getAuthorFromNetwork()
+            author = authorNetworkObjects.asDomainModel()
+        }
+        return author!!
+    }
+
     suspend fun insertArticle(article: Articles) {
         withContext(Dispatchers.IO) {
             database.favoritesDao.insertFavorite(article.asDatabaseModel())
@@ -62,15 +71,5 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
             searchableArticles = articleEntity.asDomainModel() as ArrayList<Articles>
         }
         return searchableArticles
-    }
-
-    suspend fun getAuthorDetails() {
-        withContext(Dispatchers.IO) {
-            try {
-                val author: Author = getAuthor()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
     }
 }

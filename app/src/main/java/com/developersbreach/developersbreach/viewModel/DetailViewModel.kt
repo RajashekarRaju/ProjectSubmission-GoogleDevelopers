@@ -2,8 +2,10 @@ package com.developersbreach.developersbreach.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.model.Author
 import com.developersbreach.developersbreach.repository.ArticlesRepository
 import com.developersbreach.developersbreach.repository.database.getDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -35,15 +37,22 @@ class DetailViewModel(
     val userInputEnabled: MutableLiveData<Boolean>
         get() = _userInputEnabled
 
+    private val _author = MutableLiveData<Author>()
+    val author: LiveData<Author>
+        get() = _author
+
 
     init {
         viewModelScope.launch {
             _viewPagerList.postValue(repository.searchableArticle())
             _selectedArticle.postValue(article)
             _userInputEnabled.postValue(userInputEnabled)
-            repository.getAuthorDetails()
         }
 
+        viewModelScope.launch {
+            val refreshAuthor = repository.getAuthor()
+            _author.postValue(refreshAuthor)
+        }
     }
 
     override fun onCleared() {

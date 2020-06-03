@@ -15,6 +15,7 @@ import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.utils.ZoomOutPageTransformer
 import com.developersbreach.developersbreach.viewModel.DetailViewModel
 import com.developersbreach.developersbreach.viewModel.factory.DetailViewModelFactory
+import timber.log.Timber
 
 
 /**
@@ -63,6 +64,10 @@ class DetailFragment : Fragment() {
             viewModel.userInputEnabled.observe(viewLifecycleOwner, Observer { isUserInputEnabled ->
                 viewPager.isUserInputEnabled = isUserInputEnabled
             })
+        })
+
+        viewModel.author.observe(viewLifecycleOwner, Observer { author ->
+            Timber.e(author.name)
         })
     }
 }
