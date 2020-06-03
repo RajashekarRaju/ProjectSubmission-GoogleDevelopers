@@ -18,4 +18,19 @@
     <string name="no_search_results_found">No Results Found</string>
     <string name="search_articles_hint">Search Articles</string>
 
+    <!--  DetailFragment Appbar Menu Items  -->
+    <string name="bottom_appbar_menu_title_search">Search</string>
+    <string name="bottom_appbar_menu_title_close">Close</string>
+    <string name="bottom_appbar_menu_title_theme">Theme</string>
+    <string name="bottom_appbar_menu_title_refresh">Refresh</string>
+    <string name="bottom_appbar_menu_title_find_top">Top</string>
+    <string name="bottom_appbar_menu_title_find_bottom">Bottom</string>
+
+    <!--  WebView Fragment  -->
+    <string name="search_query_dialog_title">Find The Query</string>
+    <string name="search_query_dialog_positive_button">Find</string>
+    <string name="search_query_dialog_negative_button">Cancel</string>
+    <string name="enter_query_hint">Enter Query</string>
+    <string name="search_query_error_message">Please Enter Query</string>
+
 </resources>

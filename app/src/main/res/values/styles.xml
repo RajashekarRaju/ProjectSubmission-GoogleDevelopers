@@ -17,4 +17,15 @@
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
+    <style name="MaterialDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/TitleTextStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/TitleTextStyle</item>
+    </style>
+
+    <style name="TitleTextStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">?attr/colorOnPrimarySurface</item>
+        <item name="buttonBarButtonStyle">?attr/selectableItemBackground</item>
+        <item name="rippleColor">?attr/colorAccent</item>
+    </style>
+
 </resources>
