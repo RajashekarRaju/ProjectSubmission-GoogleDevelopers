@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/find_top_web_view_menu_item"
+        android:icon="@drawable/ic_find_top"
+        android:title="@string/bottom_appbar_menu_title_find_top"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/find_bottom_web_view_menu_item"
+        android:icon="@drawable/ic_find_bottom"
+        android:title="@string/bottom_appbar_menu_title_find_bottom"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/clear_matches_web_view_menu_item"
+        android:icon="@drawable/ic_close"
+        android:title="@string/bottom_appbar_menu_title_search"
+        app:showAsAction="always" />
+
+</menu>
