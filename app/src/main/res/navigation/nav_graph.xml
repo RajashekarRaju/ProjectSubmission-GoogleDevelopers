@@ -53,12 +53,19 @@
         <argument
             android:name="fragmentClassArgs"
             app:argType="boolean" />
+        <action
+            android:id="@+id/DetailToWebFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.developersbreach.developersbreach.view.webView.WebViewFragment"
         android:label="fragment_web_view"
-        tools:layout="@layout/fragment_web_view" />
+        tools:layout="@layout/fragment_web_view" >
+        <argument
+            android:name="webViewFragmentArgs"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
