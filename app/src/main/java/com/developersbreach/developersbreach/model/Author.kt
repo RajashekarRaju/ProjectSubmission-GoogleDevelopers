@@ -1,7 +1,7 @@
 package com.developersbreach.developersbreach.model
 
-class Author(
-    val id: Int,
+data class Author(
+    val authorId: Int,
     val name: String,
     val description: String,
     val avatar: String

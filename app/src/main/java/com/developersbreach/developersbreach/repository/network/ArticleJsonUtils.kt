@@ -1,6 +1,5 @@
 package com.developersbreach.developersbreach.repository.network
 
-import com.developersbreach.developersbreach.model.Author
 import com.developersbreach.developersbreach.model.Tags
 import org.json.JSONArray
 import org.json.JSONObject
@@ -152,7 +151,7 @@ fun fetchTagsJsonData(response: String): List<Tags> {
 }
 
 
-fun fetchAuthorJsonData(response: String): Author {
+fun fetchAuthorJsonData(response: String): AuthorNetwork {
 
     val baseJsonObject = JSONObject(response)
 
@@ -178,5 +177,5 @@ fun fetchAuthorJsonData(response: String): Author {
         avatarLink = jsonObjectAvatar.getString(AUTHOR_AVATAR)
     }
 
-    return Author(id, name!!, description!!, avatarLink!!)
+    return AuthorNetwork(id, name!!, description!!, avatarLink!!)
 }
