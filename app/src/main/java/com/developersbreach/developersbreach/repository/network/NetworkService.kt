@@ -1,7 +1,6 @@
 package com.developersbreach.developersbreach.repository.network
 
 import android.net.Uri
-import com.developersbreach.developersbreach.model.Author
 import com.developersbreach.developersbreach.model.Tags
 import timber.log.Timber
 import java.io.IOException
@@ -28,8 +27,9 @@ fun getTagsForArticle(links: String): List<Tags> {
     return fetchTagsJsonData(tagsResponse(links))
 }
 
-fun getAuthor(): Author {
-    return fetchAuthorJsonData(authorResponse())
+fun getAuthorFromNetwork(): NetworkAuthorContainer {
+    val authorNetwork: AuthorNetwork = fetchAuthorJsonData(authorResponse())
+    return NetworkAuthorContainer(authorNetwork)
 }
 
 
