@@ -1,10 +1,13 @@
 package com.developersbreach.developersbreach.view.detail
 
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.developersbreach.developersbreach.model.Articles
 import com.google.android.material.appbar.AppBarLayout
@@ -24,6 +27,17 @@ fun TextView.setTagText(articles: Articles) {
     val tagList = articles.tagList
     for (tag in tagList) {
         this.text = tagList.toString()
+    }
+}
+
+
+@BindingAdapter("bindButtonWebView")
+fun Button.setButtonWebView(articles: Articles) {
+    this.text = "Open WebView"
+    this.setOnClickListener {
+        val action: NavDirections =
+            DetailFragmentDirections.DetailToWebFragment(articles.urlLink)
+        findNavController().navigate(action)
     }
 }
 
