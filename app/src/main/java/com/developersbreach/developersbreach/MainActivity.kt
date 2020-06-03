@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setDestinationListener(controller: NavController) {
         controller.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.detailFragment) {
+            if (destination.id == R.id.detailFragment || destination.id == R.id.webViewFragment) {
                 binding.bottomNavigation.visibility = View.GONE
             } else {
                 binding.bottomNavigation.visibility = View.VISIBLE
