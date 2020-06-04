@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="urlLink"
+            type="String" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/web_view_coordinator_layout"
         android:layout_width="match_parent"
@@ -38,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="?attr/colorSecondaryVariant"
+            app:bindShareClickListener="@{urlLink}"
             app:layout_anchor="@id/web_view_bottom_app_bar"
             app:rippleColor="?attr/colorOnSecondary"
             app:srcCompat="@android:drawable/ic_menu_share" />

@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="progressBar"
+            type="android.widget.ProgressBar" />
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_web_view"
         android:layout_width="match_parent"
@@ -14,6 +21,7 @@
 
         <WebView
             android:id="@+id/web_view"
+            app:bindWebViewClient="@{progressBar}"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

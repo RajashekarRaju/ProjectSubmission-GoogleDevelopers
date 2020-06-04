@@ -2,13 +2,11 @@ package com.developersbreach.developersbreach.view.webView
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebSettings
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -61,6 +59,8 @@ class WebViewFragment : Fragment() {
         webSettings.javaScriptEnabled = true
 
         setWebViewMenu(bottomAppBar)
+        binding.urlLink = viewModel.articleLink.value
+        binding.includeWebViewContent.progressBar = binding.webViewProgressBar
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -72,21 +72,9 @@ class WebViewFragment : Fragment() {
 
     private fun observeWebView() {
         viewModel.articleLink.observe(viewLifecycleOwner, Observer { link ->
-            // "https://github.com/"
-            webView.loadUrl(link)
+            //"https://github.com/"
+            webView.loadUrl("https://github.com/")
         })
-
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-                binding.webViewProgressBar.visibility = View.VISIBLE
-            }
-
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                binding.webViewProgressBar.visibility = View.GONE
-            }
-        }
     }
 
     private fun onWebMenuClickListener(): Toolbar.OnMenuItemClickListener {
@@ -174,6 +162,10 @@ class WebViewFragment : Fragment() {
         }
         dialog.show()
 
+        setDialogGravity(dialog)
+    }
+
+    private fun setDialogGravity(dialog: AlertDialog) {
         val params = dialog.window?.attributes
         params!!.gravity = Gravity.TOP
         dialog.window!!.attributes = params
