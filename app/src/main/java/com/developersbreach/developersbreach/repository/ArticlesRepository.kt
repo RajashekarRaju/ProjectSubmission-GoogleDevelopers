@@ -6,11 +6,13 @@ import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.model.Author
 import com.developersbreach.developersbreach.repository.database.ArticlesDatabase
 import com.developersbreach.developersbreach.repository.database.entity.ArticlesEntity
+import com.developersbreach.developersbreach.repository.database.entity.FavoritesEntity
 import com.developersbreach.developersbreach.repository.database.entity.asDatabaseModel
 import com.developersbreach.developersbreach.repository.database.entity.asDomainModel
 import com.developersbreach.developersbreach.repository.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.io.IOException
 
 
@@ -71,5 +73,19 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
             searchableArticles = articleEntity.asDomainModel() as ArrayList<Articles>
         }
         return searchableArticles
+    }
+
+    suspend fun isFavoriteItemsAvailable(): Boolean {
+        var size = false
+        withContext(Dispatchers.IO) {
+            val favorites: List<FavoritesEntity> = database.favoritesDao.isFavoritesAvailable()
+            Timber.i(favorites.size.toString())
+            if (favorites.size >= 1) {
+                size = true
+            } else {
+                size = false
+            }
+        }
+        return size
     }
 }
