@@ -33,4 +33,47 @@
     <string name="enter_query_hint">Enter Query</string>
     <string name="search_query_error_message">Please Enter Query</string>
 
+    <!--  SettingsFragment Preferences  -->
+    <!--  Category Title  -->
+    <string name="preference_category_title_article">Articles</string>
+    <string name="preference_category_title_contact">Contact</string>
+    <string name="preference_category_title_developer">Developer</string>
+    <string name="preference_article_title_about">About</string>
+    <!--  Preference Article Summary -->
+    <string name="preference_summary_article_refresh">Keeps updated with new data from server.</string>
+    <string name="preference_summary_article_delete">This will delete all your favorite articles.</string>
+    <string name="preference_summary_article_contact">Submit email on what article i should write next.</string>
+    <string name="preference_summary_article_developer">Articles wrote by me here are available as open source, take a look at it.</string>
+    <string name="preference_summary_article_about">See what this app is about.</string>
+    <!--  Preference Article Title -->
+    <!--  Theme List Preference Dialog Title  -->
+    <string name="preference_article_title_refresh">Refresh</string>
+    <string name="preference_article_title_contact">Open Submit Form</string>
+    <string name="preference_article_title_developer">Open Github</string>
+    <!--  Dialog Article Titles  -->
+    <string name="preference_article_title_delete">Delete Articles</string>
+    <string name="refresh_article_dialog_title">Refresh Favorites ?</string>
+    <string name="refresh_article_dialog_message">Choosing Refresh Will Remove All Article Data And
+        Updates With New Data. Perform this Only Once A Day.</string>
+    <string name="refresh_article_dialog_positive_button">Refresh</string>
+    <string name="refresh_article_dialog_negative_button">Cancel</string>
+    <string name="about_app_dialog_title">About App</string>
+    <string name="about_app_dialog_message">This app pulls data from web page developersbreach.com
+    which shows data in form of list in fragment. This app is not useful for regular users and made
+    particularly for app developers.</string>
+    <!--  Dialog Delete Article  -->
+    <string name="delete_article_dialog_title">Delete Favorites ?</string>
+    <string name="delete_article_dialog_message">Choosing Delete Will Remove All Your Favorite Articles.</string>
+    <string name="delete_article_dialog_positive_button">Delete</string>
+    <string name="delete_article_dialog_negative_button">Cancel</string>
+
+    <!--  App Snackbar Message's  -->
+    <string name="snackbar_added_to_favorites_message">Added to Favorites</string>
+    <string name="snackbar_removed_favorite_message">Removed From Favorites</string>
+    <string name="snackbar_refresh_articles_message">Refresh Completed</string>
+    <string name="snackbar_delete_articles_message">Deleted All Articles</string>
+
+    <!--  Show no internet text  -->
+    <string name="no_internet_connection">No Internet</string>
+
 </resources>
