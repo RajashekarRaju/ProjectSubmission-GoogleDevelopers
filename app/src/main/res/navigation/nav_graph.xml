@@ -40,7 +40,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.developersbreach.developersbreach.view.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/SettingsToCommonWebViewFragment"
+            app:destination="@id/commonWebViewFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
@@ -65,6 +69,22 @@
         tools:layout="@layout/fragment_web_view" >
         <argument
             android:name="webViewFragmentArgs"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsCompatFragment"
+        android:name="com.developersbreach.developersbreach.view.settings.SettingsCompatFragment"
+        tools:layout="@xml/preferences"
+        android:label="SettingsCompatFragment" />
+
+    <fragment
+        android:id="@+id/commonWebViewFragment"
+        android:name="com.developersbreach.developersbreach.view.commonWebView.CommonWebViewFragment"
+        android:label="fragment_common_web_view"
+        tools:layout="@layout/fragment_common_web_view" >
+        <argument
+            android:name="webUrlArgs"
             app:argType="string" />
     </fragment>
 
