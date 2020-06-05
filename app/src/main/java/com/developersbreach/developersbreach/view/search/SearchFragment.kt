@@ -62,7 +62,7 @@ class SearchFragment : Fragment() {
         if (query.isNotEmpty()) {
             val formatQuery: String = query.toString().toLowerCase(Locale.getDefault())
             viewModel.filter(formatQuery).observe(viewLifecycleOwner, Observer { articles ->
-                val adapter = SearchAdapter()
+                val adapter = SearchAdapter(this)
                 adapter.submitList(articles)
                 binding.searchRecyclerView.adapter = adapter
                 toggleRecyclerView(articles)
@@ -74,7 +74,7 @@ class SearchFragment : Fragment() {
 
     private fun searchableArticles() {
         viewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
-            val adapter = SearchAdapter()
+            val adapter = SearchAdapter(this)
             adapter.submitList(articles)
             binding.searchRecyclerView.adapter = adapter
         })

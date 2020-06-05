@@ -8,15 +8,21 @@ import com.developersbreach.developersbreach.databinding.ItemSearchBinding
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.view.search.SearchAdapter.*
 
-class SearchAdapter :
+class SearchAdapter(
+    private val fragment: SearchFragment
+) :
     ListAdapter<Articles, SearchViewHolder>(Articles.DiffCallback) {
 
     class SearchViewHolder(
         private var binding: ItemSearchBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(articles: Articles) {
+        fun bind(
+            articles: Articles,
+            fragment: SearchFragment
+        ) {
             binding.article = articles
+            binding.fragment = fragment
             binding.executePendingBindings()
         }
     }
@@ -27,6 +33,6 @@ class SearchAdapter :
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val articles: Articles = getItem(position)
-        holder.bind(articles)
+        holder.bind(articles, fragment)
     }
 }

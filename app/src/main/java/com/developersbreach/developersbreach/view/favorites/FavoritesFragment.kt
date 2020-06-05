@@ -38,7 +38,7 @@ class FavoritesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.favorites.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = FavoritesAdapter(viewModel)
+            val adapter = FavoritesAdapter(viewModel, this)
             adapter.submitList(list)
             binding.favoritesRecyclerView.adapter = adapter
         })

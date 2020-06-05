@@ -10,7 +10,8 @@ import com.developersbreach.developersbreach.view.articles.ArticlesAdapter.*
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 
 class ArticlesAdapter(
-    private val viewModel: ArticlesViewModel
+    private val viewModel: ArticlesViewModel,
+    private val fragment: ArticlesFragment
 ) :
     ListAdapter<Articles, ArticlesViewHolder>(Articles.DiffCallback) {
 
@@ -21,10 +22,12 @@ class ArticlesAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             articles: Articles,
-            viewModel: ArticlesViewModel
+            viewModel: ArticlesViewModel,
+            fragment: ArticlesFragment
         ) {
             binding.articles = articles
             binding.viewModel = viewModel
+            binding.fragment = fragment
             binding.executePendingBindings()
         }
     }
@@ -39,6 +42,6 @@ class ArticlesAdapter(
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
         val articles: Articles = getItem(position)
-        holder.bind(articles, viewModel)
+        holder.bind(articles, viewModel, fragment)
     }
 }

@@ -48,7 +48,7 @@ class ArticlesFragment : Fragment() {
         })
 
         viewModel.articles.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = ArticlesAdapter(viewModel)
+            val adapter = ArticlesAdapter(viewModel, this)
             adapter.submitList(list)
             binding.articlesRecyclerView.adapter = adapter
         })

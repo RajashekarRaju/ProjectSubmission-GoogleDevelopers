@@ -13,6 +13,10 @@
         <variable
             name="articles"
             type="com.developersbreach.developersbreach.model.Articles" />
+        
+        <variable
+            name="fragment"
+            type="com.developersbreach.developersbreach.view.articles.ArticlesFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +26,8 @@
 
         <TextView
             android:id="@+id/title_text_view"
-            app:articleToDetailListener="@{articles}"
+            app:bindArticleToDetailListener="@{articles}"
+            app:bindArticleFragment="@{fragment}"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:padding="16dp"
@@ -40,8 +45,8 @@
             android:layout_height="40dp"
             android:layout_margin="16dp"
             android:src="@drawable/ic_favorite_add"
-            app:articleFragmentModel="@{articles}"
-            app:articleViewModel="@{viewModel}"
+            app:bindArticleFragmentModel="@{articles}"
+            app:bindArticleViewModel="@{viewModel}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/title_text_view"

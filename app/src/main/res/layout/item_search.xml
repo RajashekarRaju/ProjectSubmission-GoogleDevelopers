@@ -8,6 +8,10 @@
         <variable
             name="article"
             type="com.developersbreach.developersbreach.model.Articles" />
+
+        <variable
+            name="fragment"
+            type="com.developersbreach.developersbreach.view.search.SearchFragment" />
     </data>
 
     <TextView
@@ -15,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        app:searchToDetailListener="@{article}"
+        app:bindSearchToDetailListener="@{article}"
+        app:bindSearchFragment="@{fragment}"
         android:clickable="true"
         android:focusable="true"
         android:paddingHorizontal="8dp"

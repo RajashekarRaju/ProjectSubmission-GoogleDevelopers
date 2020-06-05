@@ -13,6 +13,10 @@
         <variable
             name="articles"
             type="com.developersbreach.developersbreach.model.Articles" />
+
+        <variable
+            name="fragment"
+            type="com.developersbreach.developersbreach.view.favorites.FavoritesFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +30,8 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="@{articles.title}"
-            app:favoriteToDetailListener="@{articles}"
+            app:bindFavoriteToDetailListener="@{articles}"
+            app:bindFavoritesFragment="@{fragment}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/favorite_remove_image_view"
@@ -39,8 +44,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            app:favoriteFragmentModel="@{articles}"
-            app:favoriteViewModel="@{viewModel}"
+            app:bindFavoriteFragmentModel="@{articles}"
+            app:bindFavoriteViewModel="@{viewModel}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/favorites_title_text_view"

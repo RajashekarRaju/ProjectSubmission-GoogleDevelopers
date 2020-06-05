@@ -10,7 +10,8 @@ import com.developersbreach.developersbreach.viewModel.FavoritesViewModel
 
 
 class FavoritesAdapter(
-    private val viewModel: FavoritesViewModel
+    private val viewModel: FavoritesViewModel,
+    private val fragment: FavoritesFragment
 ) :
     ListAdapter<Articles,
             FavoritesAdapter.FavoritesViewHolder>(Articles.DiffCallback) {
@@ -22,10 +23,12 @@ class FavoritesAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             articles: Articles,
-            viewModel: FavoritesViewModel
+            viewModel: FavoritesViewModel,
+            fragment: FavoritesFragment
         ) {
             binding.articles = articles
             binding.viewModel = viewModel
+            binding.fragment = fragment
             binding.executePendingBindings()
         }
     }
@@ -40,6 +43,6 @@ class FavoritesAdapter(
 
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         val articles: Articles = getItem(position)
-        holder.bind(articles, viewModel)
+        holder.bind(articles, viewModel, fragment)
     }
 }
