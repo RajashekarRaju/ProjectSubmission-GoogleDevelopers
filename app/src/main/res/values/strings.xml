@@ -76,4 +76,8 @@
     <!--  Show no internet text  -->
     <string name="no_internet_connection">No Internet</string>
 
+    <!--  WebView URL's in WebViewFragment  -->
+    <string name="url_site_contact">https://developersbreach.com/contact/</string>
+    <string name="url_site_developer">https://github.com/RajashekarRaju</string>
+
 </resources>
