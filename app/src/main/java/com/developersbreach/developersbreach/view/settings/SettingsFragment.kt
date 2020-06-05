@@ -40,10 +40,10 @@ class SettingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val fragment = SettingsCompatFragment(viewModel, this, binding)
+        val fragment: SettingsCompatFragment? = SettingsCompatFragment.newInstance(viewModel, this, binding)
         val fragmentManager: FragmentManager = childFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(binding.settingsFragmentCompactContainer.id, fragment)
+        fragmentTransaction.replace(binding.settingsFragmentCompactContainer.id, fragment!!)
         fragmentTransaction.commit()
     }
 }
