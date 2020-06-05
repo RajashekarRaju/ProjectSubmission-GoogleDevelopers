@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.databinding.FragmentArticlesBinding
+import com.developersbreach.developersbreach.utils.showSnackBar
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 import com.developersbreach.developersbreach.viewModel.factory.ArticleViewModelFactory
 
@@ -38,6 +40,12 @@ class ArticlesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        viewModel.isInternetAvailable.observe(viewLifecycleOwner, Observer { isInternetAvailable ->
+            if (!isInternetAvailable) {
+                showSnackBar(getString(R.string.no_internet_connection), requireActivity())
+            }
+        })
 
         viewModel.articles.observe(viewLifecycleOwner, Observer { list ->
             val adapter = ArticlesAdapter(viewModel)
