@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.developersbreach.developersbreach.R
@@ -22,7 +23,7 @@ class SettingsCompatFragment(
     private val binding: FragmentSettingsBinding
 ) : PreferenceFragmentCompat() {
 
-    lateinit var deletePreference: Preference
+    private lateinit var deletePreference: Preference
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -44,7 +45,11 @@ class SettingsCompatFragment(
         if (contactPreference != null) {
             contactPreference.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    Toast.makeText(context, "Contact", Toast.LENGTH_SHORT).show()
+                    val action: NavDirections =
+                        SettingsFragmentDirections.SettingsToCommonWebViewFragment(
+                            "Contact"
+                        )
+                    Navigation.findNavController(binding.root).navigate(action)
                     true
                 }
         }
@@ -69,7 +74,11 @@ class SettingsCompatFragment(
         if (githubPreference != null) {
             githubPreference.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    Toast.makeText(context, "Developer", Toast.LENGTH_SHORT).show()
+                    val action: NavDirections =
+                        SettingsFragmentDirections.SettingsToCommonWebViewFragment(
+                            "Developer"
+                        )
+                    Navigation.findNavController(binding.root).navigate(action)
                     true
                 }
         }
