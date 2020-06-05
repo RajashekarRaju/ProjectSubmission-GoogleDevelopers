@@ -19,7 +19,4 @@ interface FavoritesDao {
 
     @Query("delete from FAVORITES_TABLE")
     fun deleteAllFavorites()
-
-    @Query("SELECT * FROM FAVORITES_TABLE")
-    fun isFavoritesAvailable(): List<FavoritesEntity>
 }

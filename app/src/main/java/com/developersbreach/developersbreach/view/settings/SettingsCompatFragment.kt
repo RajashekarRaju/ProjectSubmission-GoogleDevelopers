@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.developersbreach.developersbreach.R
@@ -23,13 +24,15 @@ class SettingsCompatFragment(
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val beforeDelete: Boolean = viewModel.checkFavoritesBeforeDelete()
-        if (beforeDelete) {
-            deletePreference.isEnabled = true
-        } else {
-            deletePreference.isEnabled = false
-            deletePreference.icon.alpha = 50
-        }
+        viewModel.findFavorites.observe(viewLifecycleOwner, Observer {
+            val beforeDelete = it.size
+            if (beforeDelete >= 1) {
+                deletePreference.isEnabled = true
+            } else {
+                deletePreference.isEnabled = false
+                deletePreference.icon.alpha = 50
+            }
+        })
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
