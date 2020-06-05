@@ -3,13 +3,15 @@ package com.developersbreach.developersbreach.view.settings
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.databinding.FragmentSettingsBinding
-import com.developersbreach.developersbreach.utils.NetworkManager
+import com.developersbreach.developersbreach.utils.isNetworkConnected
+import com.developersbreach.developersbreach.utils.showSnackBar
 import com.developersbreach.developersbreach.viewModel.SettingsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -59,7 +61,7 @@ class SettingsCompatFragment(
         deletePreference = findPreference("DeleteAllFavoritesKey")!!
         deletePreference.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
-                showArticleDeleteDialog(requireContext())
+                showArticleDeleteDialog(requireContext(), requireView())
                 true
             }
 
@@ -90,13 +92,16 @@ class SettingsCompatFragment(
         dialog.setMessage(getString(R.string.refresh_article_dialog_message))
         dialog.setPositiveButton(
             R.string.refresh_article_dialog_positive_button,
-            RefreshArticlesButton(viewModel, binding, requireContext())
+            RefreshArticlesButton(viewModel, context, settingsFragment)
         )
         dialog.setNegativeButton(R.string.refresh_article_dialog_negative_button, DismissDialog())
         dialog.show()
     }
 
-    private fun showArticleDeleteDialog(context: Context) {
+    private fun showArticleDeleteDialog(
+        context: Context,
+        view: View
+    ) {
         val dialog =
             MaterialAlertDialogBuilder(context, R.style.MaterialDialog)
         dialog.setTitle(getString(R.string.delete_article_dialog_title))
@@ -104,7 +109,7 @@ class SettingsCompatFragment(
         dialog.setMessage(getString(R.string.delete_article_dialog_message))
         dialog.setPositiveButton(
             getString(R.string.delete_article_dialog_positive_button),
-            DeleteArticlesButton(viewModel, deletePreference, binding)
+            DeleteArticlesButton(viewModel, deletePreference, view)
         )
         dialog.setNegativeButton(
             getString(R.string.delete_article_dialog_negative_button),
@@ -122,25 +127,23 @@ class SettingsCompatFragment(
 
     class RefreshArticlesButton(
         private val viewModel: SettingsViewModel,
-        private val binding: FragmentSettingsBinding,
-        private val context: Context
+        private val context: Context,
+        private val fragment: SettingsFragment
 
     ) : DialogInterface.OnClickListener {
 
         override fun onClick(dialog: DialogInterface, which: Int) {
-            if (NetworkManager.checkNetwork(context)) {
+            if (isNetworkConnected(context)) {
                 viewModel.refreshData()
-                Snackbar.make(
-                    binding.root,
-                    R.string.snackbar_refresh_articles_message,
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                showSnackBar(
+                    context.getString(R.string.snackbar_refresh_articles_message),
+                    fragment.requireActivity()
+                )
             } else {
-                Snackbar.make(
-                    binding.root,
-                    R.string.no_internet_connection,
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                showSnackBar(
+                    context.getString(R.string.no_internet_connection),
+                    fragment.requireActivity()
+                )
             }
         }
     }
@@ -148,7 +151,7 @@ class SettingsCompatFragment(
     private class DeleteArticlesButton(
         private val viewModel: SettingsViewModel,
         private val deletePreference: Preference,
-        private val binding: FragmentSettingsBinding
+        private val view: View
     ) : DialogInterface.OnClickListener {
 
         override fun onClick(dialog: DialogInterface, which: Int) {
@@ -156,7 +159,7 @@ class SettingsCompatFragment(
             deletePreference.isEnabled = false
             deletePreference.icon.alpha = 50
             Snackbar.make(
-                binding.root,
+                view,
                 R.string.snackbar_delete_articles_message,
                 Snackbar.LENGTH_SHORT
             ).show()
