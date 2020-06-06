@@ -40,7 +40,9 @@ fun ImageView.setFavoriteFragmentModel(
 ) {
     let { imageView ->
         imageView.setImageResource(R.drawable.ic_favorite_remove)
-        imageView.setOnClickListener { viewModel.deleteArticle(article) }
+        imageView.setOnClickListener {
+            viewModel.deleteArticle(article)
+        }
 
         imageView.setOnLongClickListener {
             viewModel.deleteAllArticles()

@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.model.Articles
-import com.developersbreach.developersbreach.utils.showSnackBar
 import com.developersbreach.developersbreach.viewModel.DetailViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -36,7 +35,7 @@ fun TextView.setTagText(articles: Articles) {
 
 @BindingAdapter("bindButtonWebView")
 fun Button.setButtonWebView(articles: Articles) {
-    this.text = this.context.getString(R.string.oepn_article_button_text)
+    this.text = this.context.getString(R.string.open_article_button_text)
     this.setOnClickListener {
         val action: NavDirections =
             DetailFragmentDirections.DetailToWebFragment(articles.urlLink)

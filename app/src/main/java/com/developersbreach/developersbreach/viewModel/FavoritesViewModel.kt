@@ -11,7 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class FavoritesViewModel(application: Application) : AndroidViewModel(application) {
+class FavoritesViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
     private val repository = ArticlesRepository(getDatabase(application))
     private var viewModelJob = SupervisorJob()

@@ -15,7 +15,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class SearchViewModel(application: Application) : AndroidViewModel(application) {
+class SearchViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
     private val repository = ArticlesRepository(getDatabase(application))
 

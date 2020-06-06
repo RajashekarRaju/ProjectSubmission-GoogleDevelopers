@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 
 
-class ArticleViewModelFactory(val app: Application) : ViewModelProvider.Factory {
+class ArticleViewModelFactory(
+    private val app: Application
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ArticlesViewModel::class.java)) {

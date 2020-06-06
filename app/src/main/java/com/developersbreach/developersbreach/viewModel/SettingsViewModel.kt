@@ -12,7 +12,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 
-class SettingsViewModel(application: Application) : AndroidViewModel(application) {
+class SettingsViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
     private val repository = ArticlesRepository(getDatabase(application))
     private var viewModelJob = SupervisorJob()

@@ -8,7 +8,7 @@ import com.developersbreach.developersbreach.repository.database.entity.Favorite
 @Dao
 interface FavoritesDao {
 
-    @Query("select * from FAVORITES_TABLE")
+    @Query("SELECT * FROM FAVORITES_TABLE")
     fun getFavorites(): LiveData<List<FavoritesEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -17,6 +17,6 @@ interface FavoritesDao {
     @Delete
     fun deleteFavorite(favorite: FavoritesEntity)
 
-    @Query("delete from FAVORITES_TABLE")
+    @Query("DELETE FROM FAVORITES_TABLE")
     fun deleteAllFavorites()
 }

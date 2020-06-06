@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.developersbreach.developersbreach.viewModel.SearchViewModel
 
-class SearchViewModelFactory(val app: Application) : ViewModelProvider.Factory {
+class SearchViewModelFactory(
+    val app: Application
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
