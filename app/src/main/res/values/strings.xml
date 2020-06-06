@@ -36,6 +36,9 @@
     <!--  DetailFragment  -->
     <string name="open_article_button_text">Open Article</string>
 
+    <!--    FavoriteFragment-->
+    <string name="no_favorites_found">No Favorites Found</string>
+
     <!--  SettingsFragment Preferences  -->
     <!--  Category Title  -->
     <string name="preference_category_title_article">Articles</string>
