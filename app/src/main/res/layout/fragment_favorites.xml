@@ -46,6 +46,15 @@
             tools:listitem="@layout/item_favorites"
             tools:itemCount="16" />
 
+        <TextView
+            android:id="@+id/no_favorites_found"
+            android:text="@string/no_favorites_found"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

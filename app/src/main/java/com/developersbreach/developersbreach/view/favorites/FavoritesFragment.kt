@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.developersbreach.developersbreach.databinding.FragmentFavoritesBinding
+import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.viewModel.FavoritesViewModel
 import com.developersbreach.developersbreach.viewModel.factory.FavoritesViewModelFactory
 
@@ -37,10 +38,21 @@ class FavoritesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.favorites.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.favorites.observe(viewLifecycleOwner, Observer { favoriteList ->
             val adapter = FavoritesAdapter(viewModel, this)
-            adapter.submitList(list)
+            adapter.submitList(favoriteList)
             binding.favoritesRecyclerView.adapter = adapter
+            toggleRecyclerView(favoriteList)
         })
+    }
+
+    private fun toggleRecyclerView(articleList: List<Articles>) {
+        if (articleList.isEmpty()) {
+            binding.favoritesRecyclerView.visibility = View.INVISIBLE
+            binding.noFavoritesFound.visibility = View.VISIBLE
+        } else {
+            binding.favoritesRecyclerView.visibility = View.VISIBLE
+            binding.noFavoritesFound.visibility = View.INVISIBLE
+        }
     }
 }
