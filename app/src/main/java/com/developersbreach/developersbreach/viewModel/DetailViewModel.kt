@@ -55,6 +55,12 @@ class DetailViewModel(
         }
     }
 
+    fun insertFavorite(article: Articles) {
+        viewModelScope.launch {
+            repository.insertArticle(article)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
