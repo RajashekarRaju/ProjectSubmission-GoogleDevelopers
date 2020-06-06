@@ -2,6 +2,7 @@ package com.developersbreach.developersbreach.repository.network
 
 import android.net.Uri
 import com.developersbreach.developersbreach.model.Tags
+import com.developersbreach.developersbreach.utils.*
 import timber.log.Timber
 import java.io.IOException
 import java.io.InputStream
@@ -9,12 +10,6 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.*
-
-
-private const val SCHEME_AUTHORITY = "https://developersbreach.com"
-private const val APPEND_PATH = "wp-json/wp/v2"
-private const val APPEND_ENDPOINT_POSTS = "posts"
-private const val APPEND_ENDPOINT_USERS = "users/107376512"
 
 
 

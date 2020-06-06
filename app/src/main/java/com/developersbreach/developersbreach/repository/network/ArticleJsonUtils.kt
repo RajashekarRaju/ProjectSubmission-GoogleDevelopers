@@ -1,34 +1,11 @@
 package com.developersbreach.developersbreach.repository.network
 
 import com.developersbreach.developersbreach.model.Tags
+import com.developersbreach.developersbreach.utils.*
 import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
 import kotlin.collections.ArrayList
-
-
-private const val JSON_OBJECT_TITLE = "title"
-private const val JSON_OBJECT_EXCERPT = "excerpt"
-private const val JSON_OBJECT_LINKS = "_links"
-private const val JSON_ARRAY_LINKS = "wp:term"
-
-private const val ARTICLE_ID = "id"
-private const val ARTICLE_TITLE = "rendered"
-private const val ARTICLE_POSTED_DATE = "date"
-private const val ARTICLE_URL_LINK = "link"
-private const val ARTICLE_EXCERPT = "rendered"
-private const val ARTICLE_AUTHOR = "author"
-private const val ARTICLE_BANNER = "jetpack_featured_media_url"
-private const val ARTICLE_TAGS = "href"
-
-private const val JSON_OBJECT_AVATAR = "avatar_urls"
-private const val AUTHOR_ID = "id"
-private const val AUTHOR_NAME = "name"
-private const val AUTHOR_DESCRIPTION = "description"
-private const val AUTHOR_AVATAR = "96"
-
-private const val TAG_ID = "id"
-private const val TAG_NAME = "name"
 
 
 fun fetchArticleJsonData(response: String?): List<ArticlesNetwork> {
@@ -52,22 +29,22 @@ fun fetchArticleJsonData(response: String?): List<ArticlesNetwork> {
                 articleId = baseJsonObject.getInt(ARTICLE_ID)
             }
 
-            var banner: String? = ""
+            var banner: String? = CHECK_WITH_EMPTY_ASSERTION
             if (baseJsonObject.has(ARTICLE_BANNER)) {
                 banner = baseJsonObject.getString(ARTICLE_BANNER)
             }
 
-            var title: String? = ""
+            var title: String? = CHECK_WITH_EMPTY_ASSERTION
             if (jsonObjectTitle.has(ARTICLE_TITLE)) {
                 title = jsonObjectTitle.getString(ARTICLE_TITLE)
             }
 
-            var postedDate: String? = ""
+            var postedDate: String? = CHECK_WITH_EMPTY_ASSERTION
             if (baseJsonObject.has(ARTICLE_POSTED_DATE)) {
                 postedDate = baseJsonObject.getString(ARTICLE_POSTED_DATE)
             }
 
-            var urlLink: String? = ""
+            var urlLink: String? = CHECK_WITH_EMPTY_ASSERTION
             if (baseJsonObject.has(ARTICLE_URL_LINK)) {
                 urlLink = baseJsonObject.getString(ARTICLE_URL_LINK)
             }
@@ -77,7 +54,7 @@ fun fetchArticleJsonData(response: String?): List<ArticlesNetwork> {
                 authorId = baseJsonObject.getInt(ARTICLE_AUTHOR)
             }
 
-            var excerpt: String? = ""
+            var excerpt: String? = CHECK_WITH_EMPTY_ASSERTION
             if (jsonObjectExcerpt.has(ARTICLE_EXCERPT)) {
                 excerpt = jsonObjectExcerpt.getString(ARTICLE_EXCERPT)
             }
@@ -113,7 +90,7 @@ private fun getTagLinksFromArray(jsonObjectLinks: JSONObject): List<Tags> {
     for (j: Int in 1 until jsonArrayLinks.length()) {
         val jsonBaseLinks = jsonArrayLinks.getJSONObject(j)
 
-        var links: String? = ""
+        var links: String? = CHECK_WITH_EMPTY_ASSERTION
         if (jsonBaseLinks.has(ARTICLE_TAGS)) {
             links = jsonBaseLinks.getString(ARTICLE_TAGS)
         }
@@ -138,7 +115,7 @@ fun fetchTagsJsonData(response: String): List<Tags> {
             tagId = baseJsonObject.getInt(TAG_ID)
         }
 
-        var tagName: String? = ""
+        var tagName: String? = CHECK_WITH_EMPTY_ASSERTION
         if (baseJsonObject.has(TAG_NAME)) {
             tagName = baseJsonObject.getString(TAG_NAME)
         }
@@ -160,19 +137,19 @@ fun fetchAuthorJsonData(response: String): AuthorNetwork {
         id = baseJsonObject.getInt(AUTHOR_ID)
     }
 
-    var name: String? = ""
+    var name: String? = CHECK_WITH_EMPTY_ASSERTION
     if (baseJsonObject.has(AUTHOR_NAME)) {
         name = baseJsonObject.getString(AUTHOR_NAME)
     }
 
-    var description: String? = ""
+    var description: String? = CHECK_WITH_EMPTY_ASSERTION
     if (baseJsonObject.has(AUTHOR_DESCRIPTION)) {
         description = baseJsonObject.getString(AUTHOR_DESCRIPTION)
     }
 
     val jsonObjectAvatar = baseJsonObject.getJSONObject(JSON_OBJECT_AVATAR)
 
-    var avatarLink: String? = ""
+    var avatarLink: String? = CHECK_WITH_EMPTY_ASSERTION
     if (jsonObjectAvatar.has(AUTHOR_AVATAR)) {
         avatarLink = jsonObjectAvatar.getString(AUTHOR_AVATAR)
     }

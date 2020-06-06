@@ -10,6 +10,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.databinding.FragmentSettingsBinding
+import com.developersbreach.developersbreach.utils.PASS_PREFERENCE_CONTACT_KEY
+import com.developersbreach.developersbreach.utils.PASS_PREFERENCE_DEVELOPER_KEY
 import com.developersbreach.developersbreach.utils.isNetworkConnected
 import com.developersbreach.developersbreach.utils.showSnackBar
 import com.developersbreach.developersbreach.viewModel.SettingsViewModel
@@ -57,7 +59,7 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         val contactPreference: Preference = findPreference("ContactFormKey")!!
         contactPreference.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
-                navigateToDestination("Contact")
+                navigateToDestination(PASS_PREFERENCE_CONTACT_KEY)
                 true
             }
 
@@ -78,7 +80,7 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         val githubPreference: Preference = findPreference("DeveloperProjectKey")!!
         githubPreference.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
-                navigateToDestination("Developer")
+                navigateToDestination(PASS_PREFERENCE_DEVELOPER_KEY)
                 true
             }
 

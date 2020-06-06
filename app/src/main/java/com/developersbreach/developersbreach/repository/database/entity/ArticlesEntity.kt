@@ -5,36 +5,37 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.model.Tags
+import com.developersbreach.developersbreach.utils.*
 
-@Entity(tableName = "ARTICLES_TABLE")
+@Entity(tableName = DATABASE_ENTITY_TABLE_ARTICLE)
 data class ArticlesEntity constructor(
 
-    @ColumnInfo(name = "ID")
+    @ColumnInfo(name = COLUMN_ARTICLE_BASE_ID)
     val id: Int,
 
     @PrimaryKey
-    @ColumnInfo(name = "ARTICLE_ID")
+    @ColumnInfo(name = COLUMN_ARTICLE_ID)
     val articleId: Int,
 
-    @ColumnInfo(name = "ARTICLE_TITLE")
+    @ColumnInfo(name = COLUMN_ARTICLE_TITLE)
     val title: String,
 
-    @ColumnInfo(name = "ARTICLE_BANNER")
+    @ColumnInfo(name = COLUMN_ARTICLE_BANNER)
     val banner: String,
 
-    @ColumnInfo(name = "ARTICLE_POSTED_DATE")
+    @ColumnInfo(name = COLUMN_ARTICLE_POSTED_DATE)
     val postedDate: String,
 
-    @ColumnInfo(name = "ARTICLE_URL_LINK")
+    @ColumnInfo(name = COLUMN_ARTICLE_URL_LINK)
     val urlLink: String,
 
-    @ColumnInfo(name = "ARTICLE_EXCERPT")
+    @ColumnInfo(name = COLUMN_ARTICLE_EXCERPT)
     val excerpt: String,
 
-    @ColumnInfo(name = "ARTICLE_AUTHOR_ID")
+    @ColumnInfo(name = COLUMN_ARTICLE_AUTHOR_ID)
     val authorId: Int,
 
-    @ColumnInfo(name = "ARTICLE_TAG_LIST")
+    @ColumnInfo(name = COLUMN_ARTICLE_TAGS_LIST)
     val tagList: List<Tags>
 )
 

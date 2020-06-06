@@ -5,37 +5,37 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.model.Tags
+import com.developersbreach.developersbreach.utils.*
 
-
-@Entity(tableName = "FAVORITES_TABLE")
+@Entity(tableName = DATABASE_ENTITY_TABLE_FAVORITES)
 data class FavoritesEntity constructor(
 
-    @ColumnInfo(name = "ID")
+    @ColumnInfo(name = COLUMN_FAVORITE_BASE_ID)
     val id: Int,
 
     @PrimaryKey
-    @ColumnInfo(name = "FAVORITE_ID")
+    @ColumnInfo(name = COLUMN_FAVORITE_ID)
     val articleId: Int,
 
-    @ColumnInfo(name = "FAVORITE_TITLE")
+    @ColumnInfo(name = COLUMN_FAVORITE_TITLE)
     val title: String,
 
-    @ColumnInfo(name = "FAVORITE_BANNER")
+    @ColumnInfo(name = COLUMN_FAVORITE_BANNER)
     val banner: String,
 
-    @ColumnInfo(name = "FAVORITE_POSTED_DATE")
+    @ColumnInfo(name = COLUMN_FAVORITE_POSTED_DATE)
     val postedDate: String,
 
-    @ColumnInfo(name = "FAVORITE_URL_LINK")
+    @ColumnInfo(name = COLUMN_FAVORITE_URL_LINK)
     val urlLink: String,
 
-    @ColumnInfo(name = "FAVORITE_EXCERPT")
+    @ColumnInfo(name = COLUMN_FAVORITE_EXCERPT)
     val excerpt: String,
 
-    @ColumnInfo(name = "FAVORITE_AUTHOR_ID")
+    @ColumnInfo(name = COLUMN_FAVORITE_AUTHOR_ID)
     val authorId: Int,
 
-    @ColumnInfo(name = "FAVORITE_TAG_LIST")
+    @ColumnInfo(name = COLUMN_FAVORITE_TAGS_LIST)
     val tagList: List<Tags>
 )
 

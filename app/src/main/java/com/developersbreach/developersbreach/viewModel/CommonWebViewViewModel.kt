@@ -3,6 +3,8 @@ package com.developersbreach.developersbreach.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.developersbreach.developersbreach.R
+import com.developersbreach.developersbreach.utils.PASS_PREFERENCE_CONTACT_KEY
+import com.developersbreach.developersbreach.utils.PASS_PREFERENCE_DEVELOPER_KEY
 
 
 class CommonWebViewViewModel(application: Application, urlString: String) :
@@ -23,10 +25,10 @@ class CommonWebViewViewModel(application: Application, urlString: String) :
         }
 
     init {
-        if (urlString == "Contact") {
+        if (urlString == PASS_PREFERENCE_CONTACT_KEY) {
             _toolBarTitle = application.getString(R.string.web_view_toolbar_title_contact)
             _webUrl = application.getString(R.string.url_site_contact)
-        } else if (urlString == "Developer") {
+        } else if (urlString == PASS_PREFERENCE_DEVELOPER_KEY) {
             _toolBarTitle = application.getString(R.string.web_view_toolbar_title_github)
             _webUrl = application.getString(R.string.url_site_developer)
         }
