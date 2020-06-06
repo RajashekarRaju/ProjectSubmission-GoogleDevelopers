@@ -11,6 +11,7 @@ import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.utils.isNetworkConnected
 import com.developersbreach.developersbreach.utils.showSnackBar
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 @BindingAdapter("bindArticleToDetailListener", "bindArticleFragment")
@@ -37,8 +38,13 @@ fun ImageView.setAddArticleToFavoritesListener(
     article: Articles,
     viewModel: ArticlesViewModel
 ) {
-    this.setOnClickListener {
+    this.setOnClickListener { view ->
         viewModel.insertFavorite(article)
+        Snackbar.make(
+            view,
+            this.context.getString(R.string.snackbar_added_to_favorites_message),
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 }
 
