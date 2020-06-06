@@ -52,7 +52,7 @@ class DetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.viewPagerList.observe(viewLifecycleOwner, Observer { sportsList ->
-            val detailViewPagerAdapter = DetailViewPagerAdapter()
+            val detailViewPagerAdapter = DetailViewPagerAdapter(viewModel)
             detailViewPagerAdapter.submitList(sportsList)
             viewPager.adapter = detailViewPagerAdapter
 

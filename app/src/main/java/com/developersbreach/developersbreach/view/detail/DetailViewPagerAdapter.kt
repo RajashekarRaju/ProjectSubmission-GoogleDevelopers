@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.developersbreach.databinding.ItemViewPagerBinding
 import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.view.detail.DetailViewPagerAdapter.*
+import com.developersbreach.developersbreach.viewModel.DetailViewModel
 
 
-class DetailViewPagerAdapter :
+class DetailViewPagerAdapter(
+    private val viewModel: DetailViewModel
+) :
     ListAdapter<Articles, DetailViewHolder>(Articles.DiffCallback) {
 
     class DetailViewHolder(
@@ -17,9 +20,11 @@ class DetailViewPagerAdapter :
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            articles: Articles
+            articles: Articles,
+            viewModel: DetailViewModel
         ) {
             binding.article = articles
+            binding.viewModel = viewModel
             binding.executePendingBindings()
         }
     }
@@ -34,6 +39,6 @@ class DetailViewPagerAdapter :
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
         val articles: Articles = getItem(position)
-        holder.bind(articles)
+        holder.bind(articles, viewModel)
     }
 }

@@ -9,14 +9,17 @@ import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.utils.showSnackBar
+import com.developersbreach.developersbreach.viewModel.DetailViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 
-@BindingAdapter("bindImage")
+@BindingAdapter("bindCollapsingBannerImage")
 fun ImageView.setImageResource(articles: Articles) {
     Glide.with(this.context).load(articles.banner).into(this)
 }
@@ -33,7 +36,7 @@ fun TextView.setTagText(articles: Articles) {
 
 @BindingAdapter("bindButtonWebView")
 fun Button.setButtonWebView(articles: Articles) {
-    this.text = "Open WebView"
+    this.text = this.context.getString(R.string.oepn_article_button_text)
     this.setOnClickListener {
         val action: NavDirections =
             DetailFragmentDirections.DetailToWebFragment(articles.urlLink)
@@ -42,7 +45,7 @@ fun Button.setButtonWebView(articles: Articles) {
 }
 
 
-@BindingAdapter("bindToolbar")
+@BindingAdapter("bindDetailToolbar")
 fun Toolbar.setToolbar(articles: Articles) {
     let { toolBar ->
         toolBar.title = articles.title
@@ -53,7 +56,7 @@ fun Toolbar.setToolbar(articles: Articles) {
 }
 
 
-@BindingAdapter("bindAppbar", "collapsingToolbarView")
+@BindingAdapter("bindAppbar", "bindCollapsingToolbarView")
 fun AppBarLayout.setAppbar(articles: Articles, collapsingToolbar: CollapsingToolbarLayout) {
     this.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
         var isShow = false
@@ -76,9 +79,14 @@ fun AppBarLayout.setAppbar(articles: Articles, collapsingToolbar: CollapsingTool
 }
 
 
-@BindingAdapter("bindDetailFab")
-fun FloatingActionButton.setDetailFab(articles: Articles) {
+@BindingAdapter("bindDetailFab", "bindDetailViewModel")
+fun FloatingActionButton.setDetailFab(article: Articles, viewModel: DetailViewModel) {
     this.setOnClickListener { view ->
-        Snackbar.make(view, "Added to Favorites ${articles.id}", Snackbar.LENGTH_SHORT).show()
+        viewModel.insertFavorite(article)
+        Snackbar.make(
+            view,
+            this.context.getString(R.string.snackbar_added_to_favorites_message),
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 }
