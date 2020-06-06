@@ -33,6 +33,9 @@
     <string name="enter_query_hint">Enter Query</string>
     <string name="search_query_error_message">Please Enter Query</string>
 
+    <!--  DetailFragment  -->
+    <string name="open_article_button_text">Open Article</string>
+
     <!--  SettingsFragment Preferences  -->
     <!--  Category Title  -->
     <string name="preference_category_title_article">Articles</string>
