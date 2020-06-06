@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -12,6 +13,10 @@
         <variable
             name="viewModel"
             type="com.developersbreach.developersbreach.viewModel.DetailViewModel" />
+
+        <variable
+            name="viewPager"
+            type="androidx.viewpager2.widget.ViewPager2" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -55,6 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:bindDetailToolbar="@{article}"
+                    app:bindViewPager="@{viewPager}"
+                    app:bindViewPagerFab="@{detailFab}"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="@drawable/ic_up_button" />
 
@@ -90,23 +97,23 @@
 
                 <Button
                     android:id="@+id/open_web_view_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_detail_text_view"
-                    app:layout_constraintBottom_toTopOf="@id/tags_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_margin="24dp"
                     app:bindButtonWebView="@{article}"
-                    tools:text="Open WebView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintBottom_toTopOf="@id/tags_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_detail_text_view"
+                    tools:text="Open WebView" />
 
                 <TextView
                     android:id="@+id/tags_text"
-                    app:bindTagsText="@{article}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    app:bindTagsText="@{article}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/open_web_view_button"
@@ -117,7 +124,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/detail_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"

@@ -1,5 +1,6 @@
 package com.developersbreach.developersbreach.view.detail
 
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.model.Articles
@@ -44,17 +46,6 @@ fun Button.setButtonWebView(articles: Articles) {
 }
 
 
-@BindingAdapter("bindDetailToolbar")
-fun Toolbar.setToolbar(articles: Articles) {
-    let { toolBar ->
-        toolBar.title = articles.title
-        toolBar.setNavigationOnClickListener { view ->
-            Navigation.findNavController(view).navigateUp()
-        }
-    }
-}
-
-
 @BindingAdapter("bindAppbar", "bindCollapsingToolbarView")
 fun AppBarLayout.setAppbar(articles: Articles, collapsingToolbar: CollapsingToolbarLayout) {
     this.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
@@ -87,5 +78,42 @@ fun FloatingActionButton.setDetailFab(article: Articles, viewModel: DetailViewMo
             this.context.getString(R.string.snackbar_added_to_favorites_message),
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+}
+
+
+@BindingAdapter("bindDetailToolbar", "bindViewPager", "bindViewPagerFab")
+fun Toolbar.setToolbar(
+    articles: Articles,
+    viewPager: ViewPager2,
+    viewPagerFab: FloatingActionButton
+) {
+    let { toolBar ->
+
+        toolBar.title = articles.title
+        toolBar.setNavigationOnClickListener { view ->
+            Navigation.findNavController(view).navigateUp()
+        }
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+
+                when (state) {
+                    ViewPager2.SCROLL_STATE_DRAGGING -> {
+                        toolBar.navigationIcon = null
+                        viewPagerFab.visibility = View.INVISIBLE
+                    }
+                    ViewPager2.SCROLL_STATE_IDLE -> {
+                        toolBar.setNavigationIcon(R.drawable.ic_up_button)
+                        viewPagerFab.visibility = View.VISIBLE
+                    }
+                    ViewPager2.SCROLL_STATE_SETTLING -> {
+                        toolBar.navigationIcon = null
+                        viewPagerFab.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        })
     }
 }
