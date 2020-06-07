@@ -25,7 +25,6 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         private lateinit var fragment: SettingsFragment
         private lateinit var binding: FragmentSettingsBinding
         private lateinit var deletePreference: Preference
-        private lateinit var requireContext: Context
 
         fun newInstance(
             viewModel: SettingsViewModel,
@@ -38,6 +37,8 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
             return SettingsCompatFragment()
         }
     }
+
+    private lateinit var requireContext: Context
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -108,7 +109,7 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         dialog.setMessage(getString(R.string.refresh_article_dialog_message))
         dialog.setPositiveButton(
             R.string.refresh_article_dialog_positive_button,
-            RefreshArticlesButton()
+            RefreshArticlesButton(requireContext)
         )
         dialog.setNegativeButton(R.string.refresh_article_dialog_negative_button, DismissDialog())
         dialog.show()
@@ -122,7 +123,7 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         dialog.setMessage(getString(R.string.delete_article_dialog_message))
         dialog.setPositiveButton(
             getString(R.string.delete_article_dialog_positive_button),
-            DeleteArticlesButton()
+            DeleteArticlesButton(requireContext)
         )
         dialog.setNegativeButton(
             getString(R.string.delete_article_dialog_negative_button),
@@ -138,7 +139,8 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         dialog.show()
     }
 
-    class RefreshArticlesButton : DialogInterface.OnClickListener {
+    class RefreshArticlesButton(private val requireContext: Context) :
+        DialogInterface.OnClickListener {
         override fun onClick(dialog: DialogInterface, which: Int) {
             if (isNetworkConnected(requireContext)) {
                 viewModel.refreshData()
@@ -155,7 +157,8 @@ class SettingsCompatFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private class DeleteArticlesButton : DialogInterface.OnClickListener {
+    private class DeleteArticlesButton(private val requireContext: Context) :
+        DialogInterface.OnClickListener {
         override fun onClick(dialog: DialogInterface, which: Int) {
             viewModel.deleteAllArticles()
             showSnackBar(
