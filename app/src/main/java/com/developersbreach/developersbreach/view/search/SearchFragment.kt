@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.developersbreach.developersbreach.databinding.FragmentSearchBinding
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.utils.startLinearAnimation
 import com.developersbreach.developersbreach.viewModel.SearchViewModel
 import com.developersbreach.developersbreach.viewModel.factory.SearchViewModelFactory
 import java.util.*
@@ -88,6 +89,15 @@ class SearchFragment : Fragment() {
             binding.searchRecyclerView.visibility = View.VISIBLE
             binding.noSearchResultsFound.visibility = View.INVISIBLE
         }
+    }
+
+    /*
+     * Call animation from class [ArticleAnimations] and pass view which needs to animate.
+     * In our case we animate items of cardView inside RecyclerView.
+     */
+    override fun onResume() {
+        super.onResume()
+        startLinearAnimation(binding.searchRecyclerView)
     }
 }
 
