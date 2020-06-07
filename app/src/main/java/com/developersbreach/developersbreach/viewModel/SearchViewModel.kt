@@ -24,7 +24,9 @@ class SearchViewModel(
     private var viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
-    val articles: LiveData<List<Articles>> = repository.articles
+    private val _articles: LiveData<List<Articles>> = repository.articles
+    val articles: LiveData<List<Articles>>
+        get() = _articles
 
     private lateinit var searchableArticle: List<Articles>
     private val filteredList = MutableLiveData<List<Articles>>()

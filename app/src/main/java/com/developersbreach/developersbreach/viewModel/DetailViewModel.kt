@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.developersbreach.developersbreach.model.Articles
-import com.developersbreach.developersbreach.model.Author
 import com.developersbreach.developersbreach.repository.ArticlesRepository
 import com.developersbreach.developersbreach.repository.database.getDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -26,32 +25,22 @@ class DetailViewModel(
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _viewPagerList: MutableLiveData<List<Articles>> = MutableLiveData()
-    val viewPagerList: MutableLiveData<List<Articles>>
+    val viewPagerList: LiveData<List<Articles>>
         get() = _viewPagerList
 
     private val _selectedArticle = MutableLiveData<Articles>()
-    val selectedArticle: MutableLiveData<Articles>
+    val selectedArticle: LiveData<Articles>
         get() = _selectedArticle
 
     private val _userInputEnabled = MutableLiveData<Boolean>()
-    val userInputEnabled: MutableLiveData<Boolean>
+    val userInputEnabled: LiveData<Boolean>
         get() = _userInputEnabled
-
-    private val _author = MutableLiveData<Author>()
-    val author: LiveData<Author>
-        get() = _author
-
 
     init {
         viewModelScope.launch {
             _viewPagerList.postValue(repository.searchableArticle())
             _selectedArticle.postValue(article)
             _userInputEnabled.postValue(userInputEnabled)
-        }
-
-        viewModelScope.launch {
-            val refreshAuthor = repository.getAuthor()
-            _author.postValue(refreshAuthor)
         }
     }
 

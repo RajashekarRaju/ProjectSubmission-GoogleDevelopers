@@ -19,17 +19,13 @@ class FavoritesViewModel(
     private var viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
-    val favorites: LiveData<List<Articles>> = repository.favorites
+    private val _favorites: LiveData<List<Articles>> = repository.favorites
+    val favorites: LiveData<List<Articles>>
+        get() = _favorites
 
     fun deleteArticle(article: Articles) {
         viewModelScope.launch {
             repository.deleteSelectedFavorite(article)
-        }
-    }
-
-    fun deleteAllArticles() {
-        viewModelScope.launch {
-            repository.deleteAllFavorites()
         }
     }
 
