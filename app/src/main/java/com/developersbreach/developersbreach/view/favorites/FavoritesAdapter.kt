@@ -26,7 +26,7 @@ class FavoritesAdapter(
             viewModel: FavoritesViewModel,
             fragment: FavoritesFragment
         ) {
-            binding.articles = articles
+            binding.article = articles
             binding.viewModel = viewModel
             binding.fragment = fragment
             binding.executePendingBindings()
@@ -36,7 +36,7 @@ class FavoritesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         return FavoritesViewHolder(
             ItemFavoritesBinding.inflate(
-                LayoutInflater.from(parent.context)
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }

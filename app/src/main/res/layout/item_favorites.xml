@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,7 +10,7 @@
             type="com.developersbreach.developersbreach.viewModel.FavoritesViewModel" />
 
         <variable
-            name="articles"
+            name="article"
             type="com.developersbreach.developersbreach.model.Articles" />
 
         <variable
@@ -19,40 +18,60 @@
             type="com.developersbreach.developersbreach.view.favorites.FavoritesFragment" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/favorite_item_card_view"
+        style="@style/Widget.Article.Item.MaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        app:bindFavoriteToDetailListener="@{article}"
+        app:bindFavoritesFragment="@{fragment}">
 
-        <TextView
-            android:id="@+id/favorites_title_text_view"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@{articles.title}"
-            app:bindFavoriteToDetailListener="@{articles}"
-            app:bindFavoritesFragment="@{fragment}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/favorite_remove_image_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="This is sample text for title placeholder no way important lol XD" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/favorite_remove_image_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:bindFavoriteFragmentModel="@{articles}"
-            app:bindFavoriteViewModel="@{viewModel}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/favorites_title_text_view"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/ic_favorite_remove" />
+            <ImageView
+                android:id="@+id/favorite_banner_item_image_view"
+                android:layout_width="@dimen/article_item_layout_size"
+                android:layout_height="@dimen/article_item_layout_size"
+                android:contentDescription="@string/article_image_content_description"
+                android:scaleType="centerCrop"
+                app:bindFavoriteItemBanner="@{article.banner}"
+                app:layout_constraintDimensionRatio="3:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/favorite_title_item_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin_16dp"
+                android:fontFamily="@font/rubik_medium"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:bindFavoriteItemTitle="@{article.title}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/favorite_banner_item_image_view"
+                tools:text="Card Title" />
+
+            <ImageView
+                android:id="@+id/remove_favorite_article_item_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_ripple"
+                android:contentDescription="@string/delete_favorite_button_content_description"
+                android:padding="@dimen/padding_16dp"
+                app:bindFavoriteFragmentModel="@{article}"
+                app:bindFavoriteViewModel="@{viewModel}"
+                app:bindImageViewFragment="@{fragment}"
+                app:bindItemCardView="@{favoriteItemCardView}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_favorite_remove" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>
