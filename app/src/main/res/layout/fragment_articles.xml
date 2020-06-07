@@ -24,6 +24,8 @@
             app:liftOnScrollTargetViewId="@id/articles_recycler_view">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/articles_toolbar"
+                tools:menu="@menu/profile_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimaryDark"

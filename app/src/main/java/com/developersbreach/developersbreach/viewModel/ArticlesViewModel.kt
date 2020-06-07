@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.developersbreach.developersbreach.model.Articles
+import com.developersbreach.developersbreach.model.Author
 import com.developersbreach.developersbreach.repository.ArticlesRepository
 import com.developersbreach.developersbreach.repository.database.getDatabase
 import com.developersbreach.developersbreach.utils.isNetworkConnected
@@ -20,18 +21,24 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     private var viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val articles: LiveData<List<Articles>> = repository.articles
+    private val _articles: LiveData<List<Articles>> = repository.articles
+    val articles: LiveData<List<Articles>>
+        get() = _articles
 
     private val _isInternetAvailable = MutableLiveData<Boolean>()
     val isInternetAvailable: LiveData<Boolean>
         get() = _isInternetAvailable
 
+    private val _author = MutableLiveData<Author>()
+    val author: LiveData<Author>
+        get() = _author
+
     init {
-        refreshDataFromRepository()
+        refreshArticlesData()
         _isInternetAvailable.value = isNetworkConnected(application.applicationContext)
     }
 
-    private fun refreshDataFromRepository() {
+    private fun refreshArticlesData() {
         viewModelScope.launch {
             repository.refreshArticles()
         }
@@ -40,6 +47,13 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     fun insertFavorite(article: Articles) {
         viewModelScope.launch {
             repository.insertArticle(article)
+        }
+    }
+
+    fun getAuthorDetails() {
+        viewModelScope.launch {
+            val refreshAuthor = repository.getAuthor()
+            _author.postValue(refreshAuthor)
         }
     }
 
