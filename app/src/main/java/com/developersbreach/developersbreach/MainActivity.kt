@@ -1,14 +1,15 @@
 package com.developersbreach.developersbreach
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.developersbreach.developersbreach.databinding.ActivityMainBinding
+import com.developersbreach.developersbreach.utils.startBottomCircularEffect
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +29,9 @@ class MainActivity : AppCompatActivity() {
     private fun setDestinationListener(controller: NavController) {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.detailFragment || destination.id == R.id.webViewFragment ||
-                destination.id == R.id.commonWebViewFragment) {
+                destination.id == R.id.commonWebViewFragment ||
+                destination.id == R.id.developersBreachFragment
+            ) {
                 binding.bottomNavigation.visibility = View.GONE
             } else {
                 binding.bottomNavigation.visibility = View.VISIBLE
@@ -50,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToDestination(
         item: MenuItem
-    ) = (NavigationUI.onNavDestinationSelected(item, navController)
-            || super.onOptionsItemSelected(item))
+    ): Boolean {
+        // Start a selected fragment with simple reveal animations every-time.
+        startBottomCircularEffect(binding.mainRootView)
+        return (NavigationUI.onNavDestinationSelected(item, navController)
+                || super.onOptionsItemSelected(item))
+    }
 }
