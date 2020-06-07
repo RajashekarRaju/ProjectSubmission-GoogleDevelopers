@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/articlesFragment">
+    app:startDestination="@id/developersBreachFragment">
 
     <fragment
         android:id="@+id/articlesFragment"
@@ -13,17 +12,25 @@
         tools:layout="@layout/fragment_articles">
         <action
             android:id="@+id/ArticlesToDetailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.developersbreach.developersbreach.view.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/SearchToDetailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -33,24 +40,32 @@
         tools:layout="@layout/fragment_favorites">
         <action
             android:id="@+id/FavoritesToDetailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.developersbreach.developersbreach.view.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/SettingsToCommonWebViewFragment"
-            app:destination="@id/commonWebViewFragment" />
+            app:destination="@id/commonWebViewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.developersbreach.developersbreach.view.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="detailFragmentArgs"
             app:argType="com.developersbreach.developersbreach.model.Articles" />
@@ -66,7 +81,7 @@
         android:id="@+id/webViewFragment"
         android:name="com.developersbreach.developersbreach.view.webView.WebViewFragment"
         android:label="fragment_web_view"
-        tools:layout="@layout/fragment_web_view" >
+        tools:layout="@layout/fragment_web_view">
         <argument
             android:name="webViewFragmentArgs"
             app:argType="string" />
@@ -75,17 +90,27 @@
     <fragment
         android:id="@+id/settingsCompatFragment"
         android:name="com.developersbreach.developersbreach.view.settings.SettingsCompatFragment"
-        tools:layout="@xml/preferences"
-        android:label="SettingsCompatFragment" />
+        android:label="SettingsCompatFragment"
+        tools:layout="@xml/preferences" />
 
     <fragment
         android:id="@+id/commonWebViewFragment"
         android:name="com.developersbreach.developersbreach.view.commonWebView.CommonWebViewFragment"
         android:label="fragment_common_web_view"
-        tools:layout="@layout/fragment_common_web_view" >
+        tools:layout="@layout/fragment_common_web_view">
         <argument
             android:name="webUrlArgs"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/developersBreachFragment"
+        android:name="com.developersbreach.developersbreach.view.intro.DevelopersBreachFragment"
+        android:label="DevelopersBreachFragment">
+        <action
+            android:id="@+id/IntroToArticlesFragment"
+            app:destination="@id/articlesFragment"
+            app:popUpTo="@id/developersBreachFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
