@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".view.search.SearchFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,29 +23,30 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="8dp"
+                android:layout_height="@dimen/search_recycler_view_height"
+                android:layout_marginStart="@dimen/layout_margin_8dp"
+                android:layout_marginEnd="@dimen/layout_margin_8dp"
                 android:clipToPadding="false"
                 android:orientation="vertical"
-                app:stackFromEnd="true"
-                app:reverseLayout="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/header_search_bar"
-                tools:itemCount="12"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                tools:itemCount="16"
                 tools:listitem="@layout/item_search" />
 
             <TextView
                 android:id="@+id/no_search_results_found"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_search_bar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/TextAppearance.Article.NoResultsFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/no_search_results_found"
                 android:visibility="gone"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_search_bar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
