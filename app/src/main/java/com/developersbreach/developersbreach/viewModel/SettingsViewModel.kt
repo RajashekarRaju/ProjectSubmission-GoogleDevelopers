@@ -26,7 +26,7 @@ class SettingsViewModel(
 
     fun deleteAllArticles() {
         viewModelScope.launch {
-            repository.deleteAllArticles()
+            repository.deleteAllFavorites()
         }
     }
 

@@ -23,13 +23,13 @@ class FavoritesViewModel(
 
     fun deleteArticle(article: Articles) {
         viewModelScope.launch {
-            repository.deleteArticle(article)
+            repository.deleteSelectedFavorite(article)
         }
     }
 
     fun deleteAllArticles() {
         viewModelScope.launch {
-            repository.deleteAllArticles()
+            repository.deleteAllFavorites()
         }
     }
 

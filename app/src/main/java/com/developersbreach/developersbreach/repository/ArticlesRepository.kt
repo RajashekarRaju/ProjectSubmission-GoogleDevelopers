@@ -40,8 +40,12 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
     suspend fun getAuthor(): Author {
         var author: Author? = null
         withContext(Dispatchers.IO) {
-            val authorNetworkObjects: NetworkAuthorContainer = getAuthorFromNetwork()
-            author = authorNetworkObjects.asDomainModel()
+            try {
+                val authorNetworkObjects: NetworkAuthorContainer = getAuthorFromNetwork()
+                author = authorNetworkObjects.asDomainModel()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
         return author!!
     }
@@ -52,13 +56,13 @@ class ArticlesRepository(private val database: ArticlesDatabase) {
         }
     }
 
-    suspend fun deleteArticle(article: Articles) {
+    suspend fun deleteSelectedFavorite(article: Articles) {
         withContext(Dispatchers.IO) {
             database.favoritesDao.deleteFavorite(article.asDatabaseModel())
         }
     }
 
-    suspend fun deleteAllArticles() {
+    suspend fun deleteAllFavorites() {
         withContext(Dispatchers.IO) {
             database.favoritesDao.deleteAllFavorites()
         }
