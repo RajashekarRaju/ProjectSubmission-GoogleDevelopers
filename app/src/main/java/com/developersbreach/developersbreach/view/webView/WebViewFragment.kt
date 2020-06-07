@@ -72,8 +72,7 @@ class WebViewFragment : Fragment() {
 
     private fun observeWebView() {
         viewModel.articleLink.observe(viewLifecycleOwner, Observer { link ->
-            //"https://github.com/"
-            webView.loadUrl("https://github.com/")
+            webView.loadUrl(link)
         })
     }
 
