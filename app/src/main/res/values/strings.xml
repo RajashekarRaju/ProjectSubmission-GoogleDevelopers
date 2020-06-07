@@ -13,6 +13,7 @@
     <string name="bottom_navigation_menu_title_search">Search</string>
     <string name="bottom_navigation_menu_title_favorite">Favorites</string>
     <string name="bottom_navigation_menu_title_settings">Settings</string>
+    <string name="profile_menu_title">Profile</string>
 
     <!--  Search Fragment  -->
     <string name="no_search_results_found">No Results Found</string>
@@ -85,6 +86,14 @@
     <!--  WebView URL's in WebViewFragment  -->
     <string name="url_site_contact">https://developersbreach.com/contact/</string>
     <string name="url_site_developer">https://github.com/RajashekarRaju</string>
-    <string name="profile_menu_title">Profile</string>
+
+    <!--    Content Description-->
+    <string name="article_image_content_description">Article Image</string>
+    <string name="add_favorite_button_content_description">Add Article To Favorites Button</string>
+    <string name="delete_favorite_button_content_description">Delete Article From Favorites Button</string>
+    <string name="search_button_content_description">Static Article Search Button</string>
+
+    <!--  Author Name  -->
+    <string name="author_name">Rajasekhar</string>
 
 </resources>

@@ -1,9 +1,24 @@
 <resources>
 
+    <style name="Widget.Article.Item.MaterialCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardElevation">8dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
     <style name="Widget.Article.BottomNavigationView" parent="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
         <item name="itemTextColor">@color/menu_selection_highlighter</item>
         <item name="itemIconTint">@color/menu_selection_highlighter</item>
         <item name="labelVisibilityMode">selected</item>
+        <item name="itemTextAppearanceActive">@style/NavigationViewTextAppearance</item>
+    </style>
+
+    <style name="NavigationViewTextAppearance" parent="TextAppearance.Font.NavigationView">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Font.NavigationView" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/rubik_medium</item>
     </style>
 
     <style name="TextAppearance.Article.Toolbar.Title" parent="TextAppearance.MaterialComponents.Headline4">
@@ -12,9 +27,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.Toolbar.DetailTitle" parent="TextAppearance.MaterialComponents.Headline5">
+    <style name="TextAppearance.Article.Toolbar.DetailTitle" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/rubik</item>
     </style>
 
     <style name="MaterialDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
@@ -26,6 +42,11 @@
         <item name="android:textColor">?attr/colorOnPrimarySurface</item>
         <item name="buttonBarButtonStyle">?attr/selectableItemBackground</item>
         <item name="rippleColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="TextAppearance.Article.NoResultsFound" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/rubik</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
 </resources>
