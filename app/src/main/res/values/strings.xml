@@ -85,5 +85,6 @@
     <!--  WebView URL's in WebViewFragment  -->
     <string name="url_site_contact">https://developersbreach.com/contact/</string>
     <string name="url_site_developer">https://github.com/RajashekarRaju</string>
+    <string name="profile_menu_title">Profile</string>
 
 </resources>
