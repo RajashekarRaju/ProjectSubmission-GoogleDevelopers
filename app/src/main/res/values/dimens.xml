@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    RecyclerView     -->
+    <dimen name="recycler_view_spacing_dimen">8dp</dimen>
+    <dimen name="search_recycler_view_height">0dp</dimen>
+
+    <!--    item_article, favorite, search-->
+    <dimen name="card_corner_radius_search_item">8dp</dimen>
+    <dimen name="card_elevation_search_item">8dp</dimen>
+    <dimen name="article_item_layout_size">0dp</dimen>
+    <dimen name="no_layout_width">0dp</dimen>
+    <dimen name="no_layout_height">0dp</dimen>
+    <dimen name="detail_appbar_layout_height">278dp</dimen>
+
+    <!--  Layout Margin, Padding  -->
+    <dimen name="layout_margin_12dp">12dp</dimen>
+    <dimen name="layout_margin_28dp">28dp</dimen>
+    <dimen name="layout_margin_24dp">24dp</dimen>
+    <dimen name="layout_margin_16dp">16dp</dimen>
+    <dimen name="layout_margin_20dp">20dp</dimen>
+    <dimen name="layout_margin_8dp">8dp</dimen>
+    <dimen name="layout_margin_4dp">4dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="search_header_card_height">48dp</dimen>
+    <dimen name="profile_layout_size">100dp</dimen>
+    <dimen name="intro_image_view_layout_size">200dp</dimen>
+    <dimen name="layout_margin_6dp">6dp</dimen>
+    <dimen name="guideline_width">1dp</dimen>
+
+</resources>
