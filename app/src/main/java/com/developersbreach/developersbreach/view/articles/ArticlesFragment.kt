@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.databinding.FragmentArticlesBinding
+import com.developersbreach.developersbreach.model.Articles
 import com.developersbreach.developersbreach.utils.RecyclerViewItemDecoration
 import com.developersbreach.developersbreach.utils.isNetworkConnected
 import com.developersbreach.developersbreach.utils.showSnackBar
@@ -62,6 +63,7 @@ class ArticlesFragment : Fragment() {
             val adapter = ArticlesAdapter(viewModel, this)
             adapter.submitList(list)
             binding.articlesRecyclerView.adapter = adapter
+            toggleRecyclerView(list)
         })
     }
 
@@ -126,5 +128,15 @@ class ArticlesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         startLinearAnimation(binding.articlesRecyclerView)
+    }
+
+    private fun toggleRecyclerView(articleList: List<Articles>) {
+        if (articleList.isEmpty()) {
+            binding.articlesRecyclerView.visibility = View.INVISIBLE
+            binding.articlesProgressBar.visibility = View.VISIBLE
+        } else {
+            binding.articlesRecyclerView.visibility = View.VISIBLE
+            binding.articlesProgressBar.visibility = View.INVISIBLE
+        }
     }
 }
