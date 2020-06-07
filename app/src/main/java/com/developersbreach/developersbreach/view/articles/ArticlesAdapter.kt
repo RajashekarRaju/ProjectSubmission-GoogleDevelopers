@@ -25,7 +25,7 @@ class ArticlesAdapter(
             viewModel: ArticlesViewModel,
             fragment: ArticlesFragment
         ) {
-            binding.articles = articles
+            binding.article = articles
             binding.viewModel = viewModel
             binding.fragment = fragment
             binding.executePendingBindings()
@@ -35,7 +35,7 @@ class ArticlesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
         return ArticlesViewHolder(
             ItemArticlesBinding.inflate(
-                LayoutInflater.from(parent.context)
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }

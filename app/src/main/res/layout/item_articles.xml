@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,48 +10,65 @@
             type="com.developersbreach.developersbreach.viewModel.ArticlesViewModel" />
 
         <variable
-            name="articles"
+            name="article"
             type="com.developersbreach.developersbreach.model.Articles" />
-        
+
         <variable
             name="fragment"
             type="com.developersbreach.developersbreach.view.articles.ArticlesFragment" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Article.Item.MaterialCardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content"
+        app:bindArticleFragment="@{fragment}"
+        app:bindArticleToDetailListener="@{article}">
 
-        <TextView
-            android:id="@+id/title_text_view"
-            app:bindArticleToDetailListener="@{articles}"
-            app:bindArticleFragment="@{fragment}"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text='@{articles.title}'
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/favorite_image_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="This is sample text for title placeholder no way important lol XD" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/favorite_image_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_favorite_add"
-            app:bindArticleFragmentModel="@{articles}"
-            app:bindArticleViewModel="@{viewModel}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/title_text_view"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/article_thumbnail_item_image_view"
+                android:layout_width="@dimen/article_item_layout_size"
+                android:layout_height="@dimen/article_item_layout_size"
+                android:contentDescription="@string/article_image_content_description"
+                android:scaleType="centerCrop"
+                app:bindArticleItemBanner="@{article.banner}"
+                app:layout_constraintDimensionRatio="3:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/article_title_item_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin_16dp"
+                android:fontFamily="@font/rubik_medium"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:bindArticleItemTitle="@{article.title}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/article_thumbnail_item_image_view"
+                tools:text="Card Title" />
+
+            <ImageView
+                android:id="@+id/add_favorite_article_item_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_ripple"
+                android:contentDescription="@string/add_favorite_button_content_description"
+                android:padding="@dimen/padding_16dp"
+                app:bindArticleFragmentModel="@{article}"
+                app:bindArticleViewModel="@{viewModel}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_favorite_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>
