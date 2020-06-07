@@ -11,6 +11,24 @@ import android.net.NetworkInfo
 import android.os.Build
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
+
+
+fun capitalizeWord(title: String): String? {
+    val splitTitle =
+        title.toLowerCase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
+    val builder = StringBuilder()
+    for (i in splitTitle.indices) {
+        val currentWordInTitle = splitTitle[i]
+        if (i > 0 && currentWordInTitle.isNotEmpty()) {
+            builder.append(" ")
+        }
+        val capitalTitle = (currentWordInTitle.substring(0, 1).toUpperCase(Locale.getDefault())
+                + currentWordInTitle.substring(1))
+        builder.append(capitalTitle)
+    }
+    return builder.toString()
+}
 
 
 fun showSnackBar(message: String, activity: Activity) {
