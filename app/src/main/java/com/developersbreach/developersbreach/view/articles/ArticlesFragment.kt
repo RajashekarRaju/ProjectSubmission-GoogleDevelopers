@@ -12,8 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.developersbreach.developersbreach.R
 import com.developersbreach.developersbreach.databinding.FragmentArticlesBinding
+import com.developersbreach.developersbreach.utils.RecyclerViewItemDecoration
 import com.developersbreach.developersbreach.utils.isNetworkConnected
 import com.developersbreach.developersbreach.utils.showSnackBar
+import com.developersbreach.developersbreach.utils.startLinearAnimation
 import com.developersbreach.developersbreach.viewModel.ArticlesViewModel
 import com.developersbreach.developersbreach.viewModel.factory.ArticleViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -39,15 +41,16 @@ class ArticlesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentArticlesBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-        ((activity) as AppCompatActivity).setSupportActionBar(binding.articlesToolbar)
+        ((activity) as AppCompatActivity).setSupportActionBar(binding.toolbarArticlesFragment)
         setHasOptionsMenu(true)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        RecyclerViewItemDecoration.setItemSpacing(resources, binding.articlesRecyclerView)
 
         viewModel.isInternetAvailable.observe(viewLifecycleOwner, Observer { isInternetAvailable ->
             if (!isInternetAvailable) {
@@ -114,5 +117,14 @@ class ArticlesFragment : Fragment() {
                 })
             }
         }
+    }
+
+    /*
+     * Call animation from class [ArticleAnimations] and pass view which needs to animate.
+     * In our case we animate items of cardView inside RecyclerView.
+     */
+    override fun onResume() {
+        super.onResume()
+        startLinearAnimation(binding.articlesRecyclerView)
     }
 }
